@@ -9,8 +9,10 @@
 
 package Trevi.Dalthow.Handler;
 
+import java.awt.AWTException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.io.IOException;
 
 import Trevi.Dalthow.Common.Main;
 
@@ -30,7 +32,15 @@ public class KeyInput extends KeyAdapter
 	
 	public void keyPressed(KeyEvent Par1)
 	{
-		Main.keyPressed(Par1);
+		try 
+		{
+			Main.keyPressed(Par1);
+		} 
+		
+		catch (Exception Stacktrace)
+		{
+			Stacktrace.printStackTrace();
+		} 
 	}
 	
 	

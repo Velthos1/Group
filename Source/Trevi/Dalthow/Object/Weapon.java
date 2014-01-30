@@ -13,6 +13,8 @@ import java.awt.image.BufferedImage;
 
 public class Weapon 
 {
+	// Declaration
+	
 	public Weapon(String Name, BufferedImage Texture, int Attack, int Speed)
 	{
 		

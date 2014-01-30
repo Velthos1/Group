@@ -9,18 +9,23 @@
 
 package Trevi.Dalthow.Common;
 
+import java.awt.AWTException;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
+import java.awt.Rectangle;
+import java.awt.Robot;
+import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
-import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
+import java.util.Calendar;
 
+import javax.imageio.ImageIO;
 import javax.swing.JFrame;
-import javax.swing.JOptionPane;
 
 import Trevi.Dalthow.Handler.BufferLoader;
 import Trevi.Dalthow.Handler.KeyInput;
@@ -38,9 +43,13 @@ public class Main extends Canvas implements Runnable
 	private int Ticks, AbsoluteTicks;
 	
 	private Thread Loop;
+
+	private static Calendar Time = Calendar.getInstance();
+	
+	private static JFrame Frame = new JFrame(Reference.Title);
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
-	private BufferedImage Items, Player, Logo, Prison;
+	private BufferedImage Item, Player, Logo, Prison;
 	
 	private Player Character;
 	
@@ -52,7 +61,7 @@ public class Main extends Canvas implements Runnable
 	private State currentState = State.Splash;
 	
 	
-	// Initialises
+	// Initializes
 	
 	public void init()
 	{
@@ -60,7 +69,7 @@ public class Main extends Canvas implements Runnable
 		
 		try
 		{
-			Items = Loader.loadImage("/Graphics/Game/Object/Items.png");
+			Item = Loader.loadImage("/Graphics/Game/Object/Item.png");
 			Player = Loader.loadImage("/Graphics/Game/Object/Player.png");
 			Logo = Loader.loadImage("/Graphics/Menu/Logo.png");
 			Prison = Loader.loadImage("/Graphics/Game/Terrain/Prison.png");
@@ -245,7 +254,7 @@ public class Main extends Canvas implements Runnable
 	
 	// Does something when a certain key gets pressed 
 	
-	public void keyPressed(KeyEvent Par1)
+	public void keyPressed(KeyEvent Par1) throws Exception
 	{
 		int Key = Par1.getKeyCode();
 	
@@ -272,7 +281,15 @@ public class Main extends Canvas implements Runnable
 			{
 				Character.setVelX(movementSpeed);
 			}
-			
+
+			else if(Key == KeyEvent.VK_F2)
+			{
+				Robot Par2 = new Robot();
+		 
+				BufferedImage screenShot = Par2.createScreenCapture(Frame.getBounds());
+				ImageIO.write(screenShot, "PNG", new File(Time.get(Calendar.YEAR) + "-" + (Time.get(Calendar.MONTH) + 1) + "-" + Time.get(Calendar.DAY_OF_MONTH) + "-" + Time.get(Calendar.HOUR_OF_DAY) + "-" + Time.get(Calendar.MINUTE) + "-" + Time.get(Calendar.SECOND) + ".png"));
+			}
+				
 			else if(Key == KeyEvent.VK_F3)
 			{
 				Info = true;
@@ -346,7 +363,17 @@ public class Main extends Canvas implements Runnable
 		
 		else if(Par1.getButton() == 3)
 		{
-			if(currentState == State.Game)
+			if(currentState == State.Menu)
+			{
+				
+			}
+			
+			else if(currentState == State.Options)
+			{
+				
+			}
+			
+			else if(currentState == State.Game)
 			{
 				
 			}
@@ -361,8 +388,6 @@ public class Main extends Canvas implements Runnable
 		Main Game = new Main();
 		
 		Game.setPreferredSize(new Dimension(Reference.Width * Reference.Scale, Reference.Height * Reference.Scale));
-		
-		final JFrame Frame = new JFrame(Reference.Title);
 		
 		Frame.add(Game);
 		Frame.pack();
