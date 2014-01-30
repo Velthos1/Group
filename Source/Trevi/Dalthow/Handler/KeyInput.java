@@ -9,10 +9,8 @@
 
 package Trevi.Dalthow.Handler;
 
-import java.awt.AWTException;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.io.IOException;
 
 import Trevi.Dalthow.Common.Main;
 

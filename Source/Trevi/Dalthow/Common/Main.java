@@ -9,13 +9,10 @@
 
 package Trevi.Dalthow.Common;
 
-import java.awt.AWTException;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.awt.Robot;
-import java.awt.Toolkit;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
@@ -26,6 +23,7 @@ import java.util.Calendar;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import Trevi.Dalthow.Handler.BufferLoader;
 import Trevi.Dalthow.Handler.KeyInput;
@@ -288,6 +286,8 @@ public class Main extends Canvas implements Runnable
 		 
 				BufferedImage screenShot = Par2.createScreenCapture(Frame.getBounds());
 				ImageIO.write(screenShot, "PNG", new File(Time.get(Calendar.YEAR) + "-" + (Time.get(Calendar.MONTH) + 1) + "-" + Time.get(Calendar.DAY_OF_MONTH) + "-" + Time.get(Calendar.HOUR_OF_DAY) + "-" + Time.get(Calendar.MINUTE) + "-" + Time.get(Calendar.SECOND) + ".png"));
+				
+				JOptionPane.showMessageDialog(Frame, "You just made a screenshot.");
 			}
 				
 			else if(Key == KeyEvent.VK_F3)
