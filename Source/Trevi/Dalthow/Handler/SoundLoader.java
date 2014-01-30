@@ -94,6 +94,6 @@ public class SoundLoader
 	
 	public static URL getUrl(String Par1)
 	{
-		return staticSound.getClass().getResource("/Resources/Sound/" + Par1);
+		return staticSound.getClass().getResource("/Dalthow/Resources/Sound/" + Par1);
 	}
 }

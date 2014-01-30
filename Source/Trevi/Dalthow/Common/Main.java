@@ -14,11 +14,13 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 import Trevi.Dalthow.Handler.BufferLoader;
 import Trevi.Dalthow.Handler.KeyInput;
@@ -38,7 +40,7 @@ public class Main extends Canvas implements Runnable
 	private Thread Loop;
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
-	private BufferedImage ItemSprite = null, PlayerSprite = null, Logo = null, Prison = null;
+	private BufferedImage Items, Player, Logo, Prison;
 	
 	private Player Character;
 	
@@ -58,8 +60,8 @@ public class Main extends Canvas implements Runnable
 		
 		try
 		{
-			ItemSprite = Loader.loadImage("/Graphics/Game/Object/Items.png");
-			PlayerSprite = Loader.loadImage("/Graphics/Game/Object/Player.png");
+			Items = Loader.loadImage("/Graphics/Game/Object/Items.png");
+			Player = Loader.loadImage("/Graphics/Game/Object/Player.png");
 			Logo = Loader.loadImage("/Graphics/Menu/Logo.png");
 			Prison = Loader.loadImage("/Graphics/Game/Terrain/Prison.png");
 		}
@@ -209,12 +211,13 @@ public class Main extends Canvas implements Runnable
 		
 		if(currentState == State.Splash)
 		{
+			Graphics.drawImage(Image, 0, 0, getWidth(), getHeight(), this);
 			Graphics.drawImage(Logo, 0, 0, getWidth(), getHeight(), this);
 		}
 			
 		if(currentState == State.Menu)
 		{
-			
+			Graphics.drawImage(Image, 0, 0, getWidth(), getHeight(), this);
 		}
 		
 		if(currentState == State.Game)
@@ -248,29 +251,37 @@ public class Main extends Canvas implements Runnable
 	
 		double movementSpeed = 3.75;
 		
-		if(Key == KeyEvent.VK_W)
+		if(currentState == State.Game)
 		{
-			Character.setVelY(movementSpeed);
-		}
-		
-		else if(Key == KeyEvent.VK_S)
-		{
-			Character.setVelY(- movementSpeed);
-		}
-		
-		else if(Key == KeyEvent.VK_D)
-		{
-			Character.setVelX(- movementSpeed);
-		}
-		
-		else if(Key == KeyEvent.VK_A)
-		{
-			Character.setVelX(movementSpeed);
-		}
-		
-		else if(Key == KeyEvent.VK_F3)
-		{
-			Info = true;
+			if(Key == KeyEvent.VK_W)
+			{
+				Character.setVelY(movementSpeed);
+			}
+			
+			else if(Key == KeyEvent.VK_S)
+			{
+				Character.setVelY(- movementSpeed);
+			}
+			
+			else if(Key == KeyEvent.VK_D)
+			{
+				Character.setVelX(- movementSpeed);
+			}
+			
+			else if(Key == KeyEvent.VK_A)
+			{
+				Character.setVelX(movementSpeed);
+			}
+			
+			else if(Key == KeyEvent.VK_F3)
+			{
+				Info = true;
+			}
+			
+			else if(Key == KeyEvent.VK_ESCAPE)
+			{
+				currentState = State.Menu;
+			}
 		}
 	}
 	
@@ -281,29 +292,32 @@ public class Main extends Canvas implements Runnable
 	{
 		int Key = Par1.getKeyCode();
 		
-		if(Key == KeyEvent.VK_W)
+		if(currentState == State.Game)
 		{
-			Character.setVelY(0);
-		}
-		
-		else if(Key == KeyEvent.VK_S)
-		{
-			Character.setVelY(0);
-		}
-		
-		else if(Key == KeyEvent.VK_D)
-		{
-			Character.setVelX(0);
-		}
-		
-		else if(Key == KeyEvent.VK_A)
-		{
-			Character.setVelX(0);
-		}
-		
-		else if(Key == KeyEvent.VK_F3)
-		{
-			Info = false;
+			if(Key == KeyEvent.VK_W)
+			{
+				Character.setVelY(0);
+			}
+			
+			else if(Key == KeyEvent.VK_S)
+			{
+				Character.setVelY(0);
+			}
+			
+			else if(Key == KeyEvent.VK_D)
+			{
+				Character.setVelX(0);
+			}
+			
+			else if(Key == KeyEvent.VK_A)
+			{
+				Character.setVelX(0);
+			}
+			
+			else if(Key == KeyEvent.VK_F3)
+			{
+				Info = false;
+			}
 		}
 	}
 	
@@ -314,12 +328,28 @@ public class Main extends Canvas implements Runnable
 	{	
 		if(Par1.getButton() == 1)
 		{
+			if(currentState == State.Menu)
+			{
+				
+			}
 			
+			else if(currentState == State.Options)
+			{
+				
+			}
+			
+			else if(currentState == State.Game)
+			{
+				
+			}
 		}
 		
 		else if(Par1.getButton() == 3)
 		{
-			
+			if(currentState == State.Game)
+			{
+				
+			}
 		}
 	}
 	
@@ -332,7 +362,7 @@ public class Main extends Canvas implements Runnable
 		
 		Game.setPreferredSize(new Dimension(Reference.Width * Reference.Scale, Reference.Height * Reference.Scale));
 		
-		JFrame Frame = new JFrame(Reference.Title);
+		final JFrame Frame = new JFrame(Reference.Title);
 		
 		Frame.add(Game);
 		Frame.pack();
@@ -340,6 +370,14 @@ public class Main extends Canvas implements Runnable
 		Frame.setResizable(false);
 		Frame.setLocationRelativeTo(null);
 		Frame.setVisible(true);
+		Frame.addWindowListener(new java.awt.event.WindowAdapter() 
+		{
+		    @Override
+		    public void windowClosing(java.awt.event.WindowEvent Par1) 
+		    {
+		      
+		    }
+		});
 		
 		Game.start();
 	}
@@ -349,6 +387,6 @@ public class Main extends Canvas implements Runnable
 	
 	public BufferedImage getPlayerSpriteSheet()
 	{
-		return PlayerSprite;
+		return Player;
 	}
 }
