@@ -71,7 +71,7 @@ public class Main extends Canvas implements Runnable
 			Stacktrace.printStackTrace();
 		}
 		
-		Character = new Player(Reference.Width - 16, Reference.Height - 32, this);
+		Character = new Player(Reference.Width - 16, Reference.Height - 32, 10.0, this);
 		
 		addKeyListener(new KeyInput(this));
 		addMouseListener(new MouseInput(this));
@@ -375,7 +375,7 @@ public class Main extends Canvas implements Runnable
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent Par1) 
 		    {
-		      
+		    	
 		    }
 		});
 		

@@ -23,15 +23,19 @@ public class Player
 	private double xPos;
 	private double yPos;
 	
+	private double Health;
+	
 	private double xVel;
 	private double yVel;
 	
 	private BufferedImage Player;
 	
-	public Player(double xPos, double yPos, Main Main)
+	public Player(double xPos, double yPos, double Health, Main Main)
 	{
 		this.xPos = xPos;
 		this.yPos = yPos;
+		
+		this.Health = Health;
 		
 		SpriteGrabber Sprite = new SpriteGrabber(Main.getPlayerSpriteSheet());
 		
