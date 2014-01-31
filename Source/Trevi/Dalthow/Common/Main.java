@@ -41,15 +41,16 @@ public class Main extends Canvas implements Runnable
 	private int Frames, absoluteFrames;
 	private int Ticks, absoluteTicks;
 	
-	private Thread Loop;
-
 	private static Calendar Time = Calendar.getInstance();
 	
 	private static JFrame Frame = new JFrame(Reference.Title);
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
-	private BufferedImage Item, Player, Logo, Prison;
 	
+	private BufferedImage Item, Player, Logo, Prison;
+	private State currentState;
+	private Thread Loop;
+
 	private static Player Character;
 	
 	private enum State
@@ -57,13 +58,13 @@ public class Main extends Canvas implements Runnable
 		Splash, Menu, Game, Options
 	}
 	
-	private State currentState = State.Splash;
-	
 	
 	// Initializes
 	
 	public void init()
 	{
+		currentState = State.Splash;
+		
 		BufferLoader Loader = new BufferLoader();
 		
 		try
