@@ -401,7 +401,7 @@ public class Main extends Canvas implements Runnable
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent Par1) 
 		    {
-		    	ProgressManager.saveProgress(Character.getX(), Character.getY());
+		    	ProgressManager.saveProgress(Character.getX(), Character.getY(), Character.getHealth());
 		    }
 		});
 		

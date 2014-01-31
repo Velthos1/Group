@@ -38,7 +38,7 @@ public class Player
 		this.xPos = ProgressManager.xPos;
 		this.yPos = ProgressManager.yPos;
 		
-		this.Health = Health;
+		this.Health = ProgressManager.Health;
 		
 		SpriteGrabber Sprite = new SpriteGrabber(Main.getPlayerSpriteSheet());
 		
@@ -73,6 +73,11 @@ public class Player
 	public double getY()
 	{
 		return yPos;
+	}
+	
+	public double getHealth()
+	{
+		return Health;
 	}
 	
 	
