@@ -36,9 +36,9 @@ public class Main extends Canvas implements Runnable
 	
 	private boolean Running = false;
 	private boolean Info = false;
-	
-	private int Frames, AbsoluteFrames;
-	private int Ticks, AbsoluteTicks;
+
+	private int Frames, absoluteFrames;
+	private int Ticks, absoluteTicks;
 	
 	private Thread Loop;
 
@@ -171,8 +171,8 @@ public class Main extends Canvas implements Runnable
 			{
 				Timer += 1000;
 				
-				AbsoluteFrames = Frames;
-				AbsoluteTicks = Ticks;
+				absoluteFrames = Frames;
+				absoluteTicks = Ticks;
 				
 				Ticks = 0;
 				Frames = 0;
@@ -237,8 +237,8 @@ public class Main extends Canvas implements Runnable
 			if(Info == true)
 			{
 				Graphics.drawString("VERSION: " + Reference.Version, 6, 15);
-				Graphics.drawString("FPS: " + AbsoluteFrames, 6, 30);
-				Graphics.drawString("TICKS: " + AbsoluteTicks, 6, 45);
+				Graphics.drawString("FPS: " + absoluteFrames, 6, 30);
+				Graphics.drawString("TICKS: " + absoluteTicks, 6, 45);
 				
 				Graphics.drawString("X: " + Character.getX(), 6, 75);
 				Graphics.drawString("Y: " + Character.getY(), 6, 90);
