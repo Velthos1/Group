@@ -15,6 +15,7 @@ import java.awt.image.BufferedImage;
 import Trevi.Dalthow.Common.Main;
 import Trevi.Dalthow.Common.Reference;
 import Trevi.Dalthow.Handler.SpriteGrabber;
+import Trevi.Dalthow.Manager.ProgressManager;
 
 public class Player 
 {
@@ -32,8 +33,10 @@ public class Player
 	
 	public Player(double xPos, double yPos, double Health, Main Main)
 	{
-		this.xPos = xPos;
-		this.yPos = yPos;
+		ProgressManager.loadProgress();
+		
+		this.xPos = ProgressManager.xPos;
+		this.yPos = ProgressManager.yPos;
 		
 		this.Health = Health;
 		
@@ -93,5 +96,15 @@ public class Player
 	public void setVelY(double yVel)
 	{
 		this.yVel = yVel;
+	}
+	
+	public void setPosX(double xPos)
+	{
+		this.xPos = xPos;
+	}
+	
+	public void setPosY(double yPos)
+	{
+		this.yPos = yPos;
 	}
 }

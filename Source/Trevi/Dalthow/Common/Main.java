@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 import Trevi.Dalthow.Handler.BufferLoader;
 import Trevi.Dalthow.Handler.KeyInput;
 import Trevi.Dalthow.Handler.MouseInput;
+import Trevi.Dalthow.Manager.ProgressManager;
 import Trevi.Dalthow.Object.Player;
 
 public class Main extends Canvas implements Runnable
@@ -49,7 +50,7 @@ public class Main extends Canvas implements Runnable
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	private BufferedImage Item, Player, Logo, Prison;
 	
-	private Player Character;
+	private static Player Character;
 	
 	private enum State
 	{
@@ -400,7 +401,7 @@ public class Main extends Canvas implements Runnable
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent Par1) 
 		    {
-		    	
+		    	ProgressManager.saveProgress(Character.getX(), Character.getY());
 		    }
 		});
 		
