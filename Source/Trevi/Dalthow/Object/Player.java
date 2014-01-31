@@ -38,7 +38,15 @@ public class Player
 		this.xPos = ProgressManager.xPos;
 		this.yPos = ProgressManager.yPos;
 		
-		this.Health = ProgressManager.Health;
+		if(ProgressManager.Health == 0.0)
+		{
+			this.Health = Health;
+		}
+		
+		else
+		{
+			this.Health = ProgressManager.Health;
+		}
 		
 		SpriteGrabber Sprite = new SpriteGrabber(Main.getPlayerSpriteSheet());
 		
