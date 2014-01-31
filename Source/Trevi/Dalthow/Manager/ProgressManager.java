@@ -43,6 +43,8 @@ public class ProgressManager
 	{
 		 try 
 		 {
+			 	// Creating a document and adding a element to put information in
+			 
 				DocumentBuilderFactory Par1 = DocumentBuilderFactory.newInstance();
 				DocumentBuilder Par2 = Par1.newDocumentBuilder();
 		 
@@ -51,21 +53,33 @@ public class ProgressManager
 				
 				Par3.appendChild(Par4);
 		 
+				
+				// Saving the players horizontal coordinate 
+				
 				Element Par5 = Par3.createElement("xPos");
 				
 				Par5.appendChild(Par3.createTextNode(Double.toString(xPos)));
 				Par4.appendChild(Par5);
 		 
+				
+				// Saving the players vertical coordinate
+				
 				Element Par6 = Par3.createElement("yPos");
 				
 				Par6.appendChild(Par3.createTextNode(Double.toString(yPos)));
 				Par4.appendChild(Par6);
 		 
+				
+				// Saving the players health
+				
 				Element Par7 = Par3.createElement("Health");
 
 				Par7.appendChild(Par3.createTextNode(Double.toString(Health)));
 				Par4.appendChild(Par7);
 		 
+				
+				// Saving the file
+				
 				TransformerFactory Par8 = TransformerFactory.newInstance();
 				Transformer Par9 = Par8.newTransformer();
 				DOMSource Par10 = new DOMSource(Par3);
@@ -92,6 +106,8 @@ public class ProgressManager
 	{
 		try 
 		{
+			// Opening the file and telling it to look under our section
+			
 			File Par1 = new File("Progress.xml");
 			
 			DocumentBuilderFactory Par2 = DocumentBuilderFactory.newInstance();
@@ -100,8 +116,11 @@ public class ProgressManager
 		 
 			Par4.getDocumentElement().normalize();
 		 
-			NodeList Par5 = Par4.getElementsByTagName("Dalthow");
+			NodeList Par5 = Par4.getElementsByTagName(Reference.Title);
 		 
+			
+			// Looping through the file looking for the selected variables 
+			
 			for (int Temp = 0; Temp < Par5.getLength(); Temp++) 
 			{
 				Node Par6 = Par5.item(Temp);
