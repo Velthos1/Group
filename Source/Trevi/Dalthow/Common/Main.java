@@ -195,7 +195,7 @@ public class Main extends Canvas implements Runnable
 		{
 			Thread.sleep(1750);
 			
-			currentState = State.Menu;
+			currentState = State.Game;
 		}
 		
 		else if(currentState == State.Game)
@@ -257,9 +257,9 @@ public class Main extends Canvas implements Runnable
 			
 			Heart = Sprite.grabItemImage(1, 1, 32, 32);
 			
-			for(int Par1 = 0; Par1 < 10; Par1++)
+			for(int Par1 = 0; Par1 < Character.getHealth(); Par1++)
 			{
-				Graphics.drawImage(Heart, 630 + (Par1 * 33), 10, 32, 32 , null);
+				Graphics.drawImage(Heart, (630 + (Par1 * 33)), 10, 32, 32 , null);
 			}
 		}
 		
@@ -365,7 +365,7 @@ public class Main extends Canvas implements Runnable
 		{
 			if(currentState == State.Menu)
 			{
-				currentState = State.Game;
+				
 			}
 			
 			else if(currentState == State.Options)
