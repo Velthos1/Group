@@ -47,7 +47,7 @@ public class Main extends Canvas implements Runnable
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	
-	private BufferedImage Item, Player, Logo, Prison;
+	private BufferedImage Item, Player, Logo, Map;
 	private State currentState;
 	private Thread Loop;
 
@@ -72,7 +72,7 @@ public class Main extends Canvas implements Runnable
 			Item = Loader.loadImage("/Graphics/Game/Object/Item.png");
 			Player = Loader.loadImage("/Graphics/Game/Object/Player.png");
 			Logo = Loader.loadImage("/Graphics/Menu/Logo.png");
-			Prison = Loader.loadImage("/Graphics/Game/Terrain/Prison.png");
+			Map = Loader.loadImage("/Graphics/Game/Terrain/Map.png");
 		}
 		
 		catch(IOException Stacktrace)
@@ -232,7 +232,7 @@ public class Main extends Canvas implements Runnable
 		if(currentState == State.Game)
 		{
 			Graphics.drawImage(Image, 0, 0, getWidth(), getHeight(), this);
-			Graphics.drawImage(Prison, (int)Character.getX() - 512, (int)Character.getY() - 512, 1024, 1024, this);
+			Graphics.drawImage(Map, (int)Character.getX() - 512, (int)Character.getY() - 512, 1024, 1024, this);
 			
 			Character.render(Graphics, getWidth() / 50, getHeight() / 20);
 			
