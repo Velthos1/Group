@@ -38,15 +38,7 @@ public class Player
 		this.xPos = ProgressManager.xPos;
 		this.yPos = ProgressManager.yPos;
 		
-		if(ProgressManager.Health == 0.0)
-		{
-			this.Health = Health;
-		}
-		
-		else
-		{
-			this.Health = ProgressManager.Health;
-		}
+		this.Health = ProgressManager.Health;
 		
 		SpriteGrabber Sprite = new SpriteGrabber(Main.getPlayerSpriteSheet());
 		
@@ -56,10 +48,15 @@ public class Player
 	
 	// Everything in the game that updates
 	
-	public void tick()
+	public void tick() throws Exception
 	{
 		xPos += xVel;
 		yPos += yVel;
+		
+		if(Health <= 0)
+		{
+			respawn();
+		}
 	}
 	
 	
@@ -68,6 +65,16 @@ public class Player
 	public void render(Graphics Graphics, int Par1, int Par2)
 	{
 		Graphics.drawImage(Player, Reference.Width - 16, Reference.Height - 32, Par1 * Reference.Scale, Par2 * Reference.Scale, null);
+	}
+	
+	
+	// Sets the health back to the original amount when the player dies
+	
+	public void respawn() throws Exception
+	{
+		Thread.sleep(1500);
+		
+		Health = 10.0;
 	}
 	
 	
@@ -119,5 +126,26 @@ public class Player
 	public void setPosY(double yPos)
 	{
 		this.yPos = yPos;
+	}
+	
+	public void setHealth(double Health)
+	{
+		this.Health = Health;
+	}
+	
+	
+	// Checks if the player is not dead
+	
+	public boolean isDead()
+	{
+		if(Health < 0)
+		{
+			return true;
+		}
+		
+		else 
+		{
+			return false;
+		}
 	}
 }

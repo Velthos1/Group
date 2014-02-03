@@ -30,6 +30,7 @@ import Trevi.Dalthow.Handler.KeyInput;
 import Trevi.Dalthow.Handler.MouseInput;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 import Trevi.Dalthow.Manager.ProgressManager;
+import Trevi.Dalthow.Manager.SoundManager;
 import Trevi.Dalthow.Object.Player;
 
 public class Main extends Canvas implements Runnable
@@ -42,7 +43,7 @@ public class Main extends Canvas implements Runnable
 	private int Frames, absoluteFrames;
 	private int Ticks, absoluteTicks;
 	
-	private static Calendar Time = Calendar.getInstance();
+	private Calendar Time = Calendar.getInstance();
 	
 	private static JFrame Frame = new JFrame(Reference.Title);
 	
@@ -159,10 +160,10 @@ public class Main extends Canvas implements Runnable
 					tick();
 				} 
 				
-				catch (InterruptedException Stacktrace)
+				catch (Exception Stacktrace)
 				{
 					Stacktrace.printStackTrace();
-				}
+				} 
 				
 				Delta--;
 				Ticks++;
@@ -189,7 +190,7 @@ public class Main extends Canvas implements Runnable
 	
 	// Everything in the game that updates
 	
-	private void tick() throws InterruptedException 
+	private void tick() throws Exception 
 	{
 		if(currentState == State.Splash)
 		{
@@ -275,7 +276,7 @@ public class Main extends Canvas implements Runnable
 		int Key = Par1.getKeyCode();
 	
 		double movementSpeed = 3.75;
-		
+
 		if(currentState == State.Game)
 		{
 			if(Key == KeyEvent.VK_W)
@@ -365,7 +366,7 @@ public class Main extends Canvas implements Runnable
 		{
 			if(currentState == State.Menu)
 			{
-				
+				currentState = State.Game;
 			}
 			
 			else if(currentState == State.Options)
@@ -375,7 +376,7 @@ public class Main extends Canvas implements Runnable
 			
 			else if(currentState == State.Game)
 			{
-				
+			
 			}
 		}
 		

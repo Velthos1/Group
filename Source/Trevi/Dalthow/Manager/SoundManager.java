@@ -9,78 +9,30 @@
 
 package Trevi.Dalthow.Manager;
 
-import java.util.ArrayList;
+import java.io.File;
 
-import Trevi.Dalthow.Handler.SoundLoader;
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
 
-public abstract class SoundManager
+public class SoundManager
 {
-	// Declaration
+	// Can be called from anywhere to play a sound
 	
-	public ArrayList <SoundLoader> Sounds = new ArrayList <SoundLoader>();
-	
-	public SoundManager()
+	public static void playSound(String Par1) 
 	{
-		initSounds();
-	}
-	
-	public abstract void initSounds();
-	
-	
-	// Adds a sound to the library
-	
-	public void addSound(String Name, SoundLoader Sound)
-	{
-		Sounds.add(Sound);
-	}
-	
-	
-	// Removes a sound to the library
-	
-	public void removeSound(String Name, SoundLoader Sound)
-	{
-		Sounds.remove(Sound);
-	}
-	
-	
-	// Plays a sound
-	
-	public void playSound(String Name)
-	{
-		for(SoundLoader Sound : Sounds)
-		{
-			if(Sound.equals(Name))
-			{
-				Sound.play();
-			}
-		}
-	}
-	
-	
-	// Loops a sound
-	
-	public void loopSound(String Name)
-	{
-		for(SoundLoader Sound : Sounds)
-		{
-			if(Sound.equals(Name))
-			{
-				Sound.loop();
-			}
-		}
-	}
-	
-	
-	// Stops a sound
-	
-	public void stopSound(String Name)
-	{
-		for(SoundLoader Sound : Sounds)
-		{
-			if(Sound.equals(Name))
-			{
-				Sound.stop();
-			}
-		}
+	    try 
+	    {
+	        AudioInputStream audioInputStream = AudioSystem.getAudioInputStream(new File(System.getProperty("user.dir") + "/Resources/Sound/" + Par1).getAbsoluteFile());
+	        Clip Par2 = AudioSystem.getClip();
+	       
+	        Par2.open(audioInputStream);
+	        Par2.start();
+	    } 
+	    
+	    catch(Exception Stacktrace) 
+	    {
+	        Stacktrace.printStackTrace();
+	    }
 	}
 }
