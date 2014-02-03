@@ -28,6 +28,7 @@ import javax.swing.JOptionPane;
 import Trevi.Dalthow.Handler.BufferLoader;
 import Trevi.Dalthow.Handler.KeyInput;
 import Trevi.Dalthow.Handler.MouseInput;
+import Trevi.Dalthow.Handler.SpriteGrabber;
 import Trevi.Dalthow.Manager.ProgressManager;
 import Trevi.Dalthow.Object.Player;
 
@@ -47,7 +48,7 @@ public class Main extends Canvas implements Runnable
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	
-	private BufferedImage Item, Player, Logo, Map;
+	private BufferedImage Item, Player, Heart, Logo, Button, Map;
 	private State currentState;
 	private Thread Loop;
 
@@ -71,8 +72,9 @@ public class Main extends Canvas implements Runnable
 		{
 			Item = Loader.loadImage("/Graphics/Game/Object/Item.png");
 			Player = Loader.loadImage("/Graphics/Game/Object/Player.png");
-			Logo = Loader.loadImage("/Graphics/Menu/Logo.png");
 			Map = Loader.loadImage("/Graphics/Game/Terrain/Map.png");
+			Button = Loader.loadImage("/Graphics/Menu/Button.png");
+			Logo = Loader.loadImage("/Graphics/Splash/Logo.png");
 		}
 		
 		catch(IOException Stacktrace)
@@ -193,7 +195,7 @@ public class Main extends Canvas implements Runnable
 		{
 			Thread.sleep(1750);
 			
-			currentState = State.Game;
+			currentState = State.Menu;
 		}
 		
 		else if(currentState == State.Game)
@@ -227,6 +229,11 @@ public class Main extends Canvas implements Runnable
 		if(currentState == State.Menu)
 		{
 			Graphics.drawImage(Image, 0, 0, getWidth(), getHeight(), this);
+			
+			Graphics.drawImage(Button, Reference.Width - 100, Reference.Height, 200, 50, this);
+			Graphics.drawImage(Button, Reference.Width - 100, Reference.Height + 75, 200, 50, this);
+			Graphics.drawImage(Button, Reference.Width - 100, Reference.Height + 150, 200, 50, this);
+			Graphics.drawImage(Button, Reference.Width - 100, Reference.Height + 225, 200, 50, this);
 		}
 		
 		if(currentState == State.Game)
@@ -244,6 +251,15 @@ public class Main extends Canvas implements Runnable
 				
 				Graphics.drawString("X: " + Character.getX(), 6, 75);
 				Graphics.drawString("Y: " + Character.getY(), 6, 90);
+			}
+
+			SpriteGrabber Sprite = new SpriteGrabber(Item);
+			
+			Heart = Sprite.grabItemImage(1, 1, 32, 32);
+			
+			for(int Par1 = 0; Par1 < 10; Par1++)
+			{
+				Graphics.drawImage(Heart, 630 + (Par1 * 33), 10, 32, 32 , null);
 			}
 		}
 		
@@ -349,7 +365,7 @@ public class Main extends Canvas implements Runnable
 		{
 			if(currentState == State.Menu)
 			{
-				
+				currentState = State.Game;
 			}
 			
 			else if(currentState == State.Options)
