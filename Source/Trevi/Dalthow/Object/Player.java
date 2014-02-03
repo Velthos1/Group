@@ -16,6 +16,7 @@ import Trevi.Dalthow.Common.Main;
 import Trevi.Dalthow.Common.Reference;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 import Trevi.Dalthow.Manager.ProgressManager;
+import Trevi.Dalthow.Manager.SoundManager;
 
 public class Player 
 {
@@ -147,5 +148,15 @@ public class Player
 		{
 			return false;
 		}
+	}
+	
+	
+	// Makes the player take a specific amount of damage
+	
+	public void dealDamage(double Amount)
+	{
+		setHealth(getHealth() - Amount);
+		
+		SoundManager.playSound("Hurt.wav");
 	}
 }

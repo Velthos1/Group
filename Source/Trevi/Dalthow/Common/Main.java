@@ -30,7 +30,6 @@ import Trevi.Dalthow.Handler.KeyInput;
 import Trevi.Dalthow.Handler.MouseInput;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 import Trevi.Dalthow.Manager.ProgressManager;
-import Trevi.Dalthow.Manager.SoundManager;
 import Trevi.Dalthow.Object.Player;
 
 public class Main extends Canvas implements Runnable
@@ -376,7 +375,7 @@ public class Main extends Canvas implements Runnable
 			
 			else if(currentState == State.Game)
 			{
-			
+	
 			}
 		}
 		
