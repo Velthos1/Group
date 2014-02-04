@@ -375,7 +375,7 @@ public class Main extends Canvas implements Runnable
 			
 			else if(currentState == State.Game)
 			{
-	
+				Character.dealDamage(1.0);
 			}
 		}
 		

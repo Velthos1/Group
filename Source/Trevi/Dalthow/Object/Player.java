@@ -75,7 +75,33 @@ public class Player
 	{
 		Thread.sleep(1500);
 		
+		xPos = 0;
+		yPos = 0;
+		
 		Health = 10.0;
+	}
+	
+	
+	// Checks if the player is not dead
+	
+	public boolean isDead()
+	{
+		if(Health < 0)
+		{
+			return true;
+		}
+		
+		else return false;
+	}
+	
+	
+	// Makes the player take a specific amount of damage
+	
+	public void dealDamage(double Amount)
+	{
+		setHealth(getHealth() - Amount);
+		
+		SoundManager.playSound("Hurt.wav");
 	}
 	
 	
@@ -132,31 +158,5 @@ public class Player
 	public void setHealth(double Health)
 	{
 		this.Health = Health;
-	}
-	
-	
-	// Checks if the player is not dead
-	
-	public boolean isDead()
-	{
-		if(Health < 0)
-		{
-			return true;
-		}
-		
-		else 
-		{
-			return false;
-		}
-	}
-	
-	
-	// Makes the player take a specific amount of damage
-	
-	public void dealDamage(double Amount)
-	{
-		setHealth(getHealth() - Amount);
-		
-		SoundManager.playSound("Hurt.wav");
 	}
 }
