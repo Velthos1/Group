@@ -36,7 +36,7 @@ public class Main extends Canvas implements Runnable
 {
 	// Declaration
 	
-	private boolean Running = false;
+	private boolean isRunning = false;
 	private boolean Info = false;
 
 	private int Frames, absoluteFrames;
@@ -56,7 +56,7 @@ public class Main extends Canvas implements Runnable
 	
 	private enum State
 	{
-		Splash, Menu, Game, Options
+		Splash, Game, Menu, Credits, Options
 	}
 	
 	
@@ -94,7 +94,7 @@ public class Main extends Canvas implements Runnable
 	
 	private synchronized void start()
 	{
-		if(Running == true)
+		if(isRunning == true)
 		{
 			return;
 		}
@@ -102,7 +102,7 @@ public class Main extends Canvas implements Runnable
 		Loop = new Thread(this);
 		Loop.start();
 		
-		Running = true;
+		isRunning = true;
 	}
 	
 	
@@ -110,7 +110,7 @@ public class Main extends Canvas implements Runnable
 	
 	private synchronized void stop()
 	{
-		if(Running == false)
+		if(isRunning == false)
 		{
 			return;
 		}
@@ -125,7 +125,7 @@ public class Main extends Canvas implements Runnable
 			Stacktrace.printStackTrace();
 		}
 		
-		Running = false;
+		isRunning = false;
 		
 		System.exit(1);
 	}
@@ -145,7 +145,7 @@ public class Main extends Canvas implements Runnable
 		
 		long Timer = System.currentTimeMillis();
 		
-		while(Running == true)
+		while(isRunning == true)
 		{
 			long currentTime = System.nanoTime();
 			
@@ -418,7 +418,7 @@ public class Main extends Canvas implements Runnable
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent Par1) 
 		    {
-		    	ProgressManager.saveProgress(Character.getX(), Character.getY(), Character.getHealth());
+		    	ProgressManager.saveProgress(Character.getX(), Character.getY(), Character.getHealth(), Character.getEnergy());
 		    }
 		});
 		

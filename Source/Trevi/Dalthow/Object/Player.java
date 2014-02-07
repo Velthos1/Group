@@ -26,6 +26,7 @@ public class Player
 	private double yPos;
 	
 	private double Health;
+	private double Energy;
 	
 	private double xVel;
 	private double yVel;
@@ -40,6 +41,7 @@ public class Player
 		this.yPos = ProgressManager.yPos;
 		
 		this.Health = ProgressManager.Health;
+		this.Energy = ProgressManager.Energy;
 		
 		SpriteGrabber Sprite = new SpriteGrabber(Main.getPlayerSpriteSheet());
 		
@@ -79,6 +81,7 @@ public class Player
 		yPos = 0;
 		
 		Health = 10.0;
+		Energy = 100.0;
 	}
 	
 	
@@ -122,6 +125,11 @@ public class Player
 		return Health;
 	}
 	
+	public double getEnergy()
+	{
+		return Energy;
+	}
+	
 	
 	// Setters 
 	
@@ -158,5 +166,10 @@ public class Player
 	public void setHealth(double Health)
 	{
 		this.Health = Health;
+	}
+	
+	public void setEnergy(double Energy)
+	{
+		this.Energy = Energy;
 	}
 }

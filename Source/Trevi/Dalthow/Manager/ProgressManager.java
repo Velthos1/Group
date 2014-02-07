@@ -35,11 +35,12 @@ public class ProgressManager
 	public static double yPos;
 	
 	public static double Health;
+	public static double Energy;
 	
 	
 	// The method called when the game is closed and when progress needs to be saved.
 	
-	public static void saveProgress(double xPos, double yPos, double Health)
+	public static void saveProgress(double xPos, double yPos, double Health, double Energy)
 	{
 		 try 
 		 {
@@ -78,14 +79,22 @@ public class ProgressManager
 				Par4.appendChild(Par7);
 		 
 				
+				// Saving the players energy
+				
+				Element Par8 = Par3.createElement("Energy");
+
+				Par8.appendChild(Par3.createTextNode(Double.toString(Energy)));
+				Par4.appendChild(Par8);
+		 
+				
 				// Saving the file
 				
-				TransformerFactory Par8 = TransformerFactory.newInstance();
-				Transformer Par9 = Par8.newTransformer();
-				DOMSource Par10 = new DOMSource(Par3);
-				StreamResult Par11 = new StreamResult(new File("Progress.xml"));
+				TransformerFactory Par9 = TransformerFactory.newInstance();
+				Transformer Par10 = Par9.newTransformer();
+				DOMSource Par11 = new DOMSource(Par3);
+				StreamResult Par12 = new StreamResult(new File("Progress.xml"));
 		 
-				Par9.transform(Par10, Par11);
+				Par10.transform(Par11, Par12);
 		} 
 		 
 		catch (ParserConfigurationException Stacktrace) 
