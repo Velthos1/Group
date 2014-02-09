@@ -12,8 +12,10 @@ package Trevi.Dalthow.Common;
 import java.awt.Canvas;
 import java.awt.Dimension;
 import java.awt.Font;
-import java.awt.FontFormatException;
 import java.awt.Graphics;
+import java.awt.MouseInfo;
+import java.awt.Point;
+import java.awt.PointerInfo;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseEvent;
@@ -27,6 +29,7 @@ import java.util.Calendar;
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 import Trevi.Dalthow.Handler.BufferLoader;
 import Trevi.Dalthow.Handler.KeyInput;
@@ -377,6 +380,10 @@ public class Main extends Canvas implements Runnable
 
 	public void mouseClicked(MouseEvent Par1) 
 	{	
+		PointerInfo Par2 = MouseInfo.getPointerInfo();
+		Point Par3 = new Point(Par2.getLocation());
+		SwingUtilities.convertPointFromScreen(Par3, Par1.getComponent());
+		
 		if(Par1.getButton() == 1)
 		{
 			if(currentState == State.Menu)
