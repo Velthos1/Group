@@ -11,6 +11,8 @@ package Trevi.Dalthow.Common;
 
 import java.awt.Canvas;
 import java.awt.Dimension;
+import java.awt.Font;
+import java.awt.FontFormatException;
 import java.awt.Graphics;
 import java.awt.Robot;
 import java.awt.event.KeyEvent;
@@ -18,6 +20,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
@@ -51,7 +54,8 @@ public class Main extends Canvas implements Runnable
 	private BufferedImage Item, Player, Heart, Logo, Button, Map;
 	private State currentState;
 	private Thread Loop;
-
+	private Font Console;
+	
 	private static Player Character;
 	
 	private enum State
@@ -62,7 +66,7 @@ public class Main extends Canvas implements Runnable
 	
 	// Initializes
 	
-	public void init()
+	public void init() throws Exception
 	{
 		currentState = State.Splash;
 		
@@ -75,6 +79,8 @@ public class Main extends Canvas implements Runnable
 			Map = Loader.loadImage("/Graphics/Game/Terrain/Map.png");
 			Button = Loader.loadImage("/Graphics/Menu/Button.png");
 			Logo = Loader.loadImage("/Graphics/Splash/Logo.png");
+			
+			Console = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(System.getProperty("user.dir") + "/Resources/Font/Console.ttf"))).deriveFont(Font.PLAIN, 16);
 		}
 		
 		catch(IOException Stacktrace)
@@ -135,7 +141,15 @@ public class Main extends Canvas implements Runnable
 	
 	public void run()
 	{
-		init();
+		try 
+		{
+			init();
+		} 
+		
+		catch (Exception Stacktrace) 
+		{
+			Stacktrace.printStackTrace();
+		}
 		
 		long lastTime = System.nanoTime();
 		
@@ -245,6 +259,8 @@ public class Main extends Canvas implements Runnable
 			
 			if(Info == true)
 			{
+				Graphics.setFont(Console);
+				
 				Graphics.drawString("VERSION: " + Reference.Version, 6, 15);
 				Graphics.drawString("FPS: " + absoluteFrames, 6, 30);
 				Graphics.drawString("TICKS: " + absoluteTicks, 6, 45);
