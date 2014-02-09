@@ -83,7 +83,7 @@ public class Main extends Canvas implements Runnable
 			Button = Loader.loadImage("/Graphics/Menu/Button.png");
 			Logo = Loader.loadImage("/Graphics/Splash/Logo.png");
 			
-			Console = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(System.getProperty("user.dir") + "/Resources/Font/Console.ttf"))).deriveFont(Font.PLAIN, 16);
+			Console = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(System.getProperty("user.dir") + "/Resources/Font/Console.ttf"))).deriveFont(Font.PLAIN, 13);
 		}
 		
 		catch(IOException Stacktrace)
@@ -388,7 +388,13 @@ public class Main extends Canvas implements Runnable
 		{
 			if(currentState == State.Menu)
 			{
-				currentState = State.Game;
+				if(Par3.x > 380 && Par3.x < 580)
+				{
+					if(Par3.y > 360 && Par3.y < 410) 
+					{
+						currentState = State.Game;
+					}
+				}
 			}
 			
 			else if(currentState == State.Options)
