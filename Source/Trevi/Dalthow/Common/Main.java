@@ -43,8 +43,9 @@ public class Main extends Canvas implements Runnable
 	// Declaration
 	
 	private boolean isRunning = false;
+	private boolean isFullScreen = false;	
 	private boolean Info = false;
-
+	
 	private int Frames, absoluteFrames;
 	private int Ticks, absoluteTicks;
 	
@@ -219,6 +220,16 @@ public class Main extends Canvas implements Runnable
 		{
 			Character.tick();
 		}
+		
+		if(isFullScreen == true)
+		{
+			Frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
+		}
+		
+		else
+		{
+			Frame.setExtendedState(java.awt.Frame.NORMAL);
+		}
 	}
 	
 	
@@ -278,7 +289,7 @@ public class Main extends Canvas implements Runnable
 			
 			for(int Par1 = 0; Par1 < Character.getHealth(); Par1++)
 			{
-				Graphics.drawImage(Heart, (630 + (Par1 * 33)), 10, 32, 32 , null);
+				Graphics.drawImage(Heart, (Frame.getWidth() - 350 + (Par1 * 33)), 10, 32, 32 , null);
 			}
 		}
 		
@@ -330,6 +341,19 @@ public class Main extends Canvas implements Runnable
 			else if(Key == KeyEvent.VK_F3)
 			{
 				Info = true;
+			}
+			
+			else if(Key == KeyEvent.VK_F11)
+			{
+				if(isFullScreen == false)
+				{
+					isFullScreen = true;
+				}
+				
+				else
+				{
+					isFullScreen = false;
+				}
 			}
 			
 			else if(Key == KeyEvent.VK_ESCAPE)
@@ -450,6 +474,8 @@ public class Main extends Canvas implements Runnable
 		    	ProgressManager.saveProgress(Character.getX(), Character.getY(), Character.getHealth(), Character.getEnergy());
 		    }
 		});
+		
+		
 		
 		Game.start();
 	}
