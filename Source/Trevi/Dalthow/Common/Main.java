@@ -266,21 +266,21 @@ public class Main extends Canvas implements Runnable
 		
 		if(currentState == State.Game)
 		{
-			Graphics.drawImage(Image, 0, 0, getWidth(), getHeight(), this);
-			Graphics.drawImage(Map, (int)Character.getX() - 512, (int)Character.getY() - 512, 1024, 1024, this);
+			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
+			Graphics.drawImage(Map, (int)Character.getX() - 512, (int)Character.getY() - 512, Frame.getWidth(), Frame.getHeight(), this);
 			
-			Character.render(Graphics, getWidth() / 50, getHeight() / 20);
+			Character.render(Graphics, Frame.getWidth() / 50, Frame.getHeight() / 20);
 			
 			if(Info == true)
 			{
 				Graphics.setFont(Console);
 				
-				Graphics.drawString("VERSION: " + Reference.Version, 6, 15);
-				Graphics.drawString("FPS: " + absoluteFrames, 6, 30);
-				Graphics.drawString("TICKS: " + absoluteTicks, 6, 45);
+				Graphics.drawString("VERSION: " + Reference.Version, 6, 16);
+				Graphics.drawString("FPS: " + absoluteFrames, 6, 31);
+				Graphics.drawString("TICKS: " + absoluteTicks, 6, 46);
 				
-				Graphics.drawString("X: " + Character.getX(), 6, 75);
-				Graphics.drawString("Y: " + Character.getY(), 6, 90);
+				Graphics.drawString("X: " + Character.getX(), 6, 76);
+				Graphics.drawString("Y: " + Character.getY(), 6, 91);
 			}
 
 			SpriteGrabber Sprite = new SpriteGrabber(Item);
