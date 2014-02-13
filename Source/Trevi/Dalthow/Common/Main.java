@@ -475,8 +475,6 @@ public class Main extends Canvas implements Runnable
 		    }
 		});
 		
-		
-		
 		Game.start();
 	}
 	
