@@ -21,7 +21,7 @@ public class Item
 	
 	private BufferedImage Item;
 	
-	public Item(double xPos, double yPos, String Name, Main Main, int Col, int Row)
+	public Item(double xPos, double yPos, int Col, int Row, String Name, Main Main)
 	{
 		SpriteGrabber Sprite = new SpriteGrabber(Main.getPlayerSpriteSheet());
 		
@@ -31,9 +31,9 @@ public class Item
 	
 	// Everything in the game that renders
 	
-	public void render(Graphics Graphics, int Par1, int Par2)
+	public void render(Graphics Graphics)
 	{
-		Graphics.drawImage(Item, Par1, Par2, 32, 32 , null);
+		
 	}
 	
 

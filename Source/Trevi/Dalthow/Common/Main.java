@@ -269,7 +269,7 @@ public class Main extends Canvas implements Runnable
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
 			Graphics.drawImage(Map, (int)Character.getX() - 512, (int)Character.getY() - 512, Frame.getWidth(), Frame.getHeight(), this);
 			
-			Character.render(Graphics, Frame.getWidth() / 50, Frame.getHeight() / 20);
+			Character.render(Graphics, Frame.getWidth(), Frame.getHeight());
 			
 			if(Info == true)
 			{

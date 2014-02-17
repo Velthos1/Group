@@ -67,7 +67,7 @@ public class Player
 	
 	public void render(Graphics Graphics, int Par1, int Par2)
 	{
-		Graphics.drawImage(Player, Reference.Width - 16, Reference.Height - 32, Par1 * Reference.Scale, Par2 * Reference.Scale, null);
+		Graphics.drawImage(Player, Par1 / 2 - 32, Par2 / 2 - 64, 32, 64, null);
 	}
 	
 	
