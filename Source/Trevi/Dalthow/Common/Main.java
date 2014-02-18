@@ -267,7 +267,7 @@ public class Main extends Canvas implements Runnable
 		if(currentState == State.Game)
 		{
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
-			Graphics.drawImage(Map, (int)Character.getX() - 512, (int)Character.getY() - 512, Frame.getWidth(), Frame.getHeight(), this);
+			Graphics.drawImage(Map, (int)Character.getX(), (int)Character.getY(), 1024, 1024, this);
 			
 			Character.render(Graphics, Frame.getWidth(), Frame.getHeight());
 			
