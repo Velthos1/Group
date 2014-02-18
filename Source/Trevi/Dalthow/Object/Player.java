@@ -13,7 +13,6 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import Trevi.Dalthow.Common.Main;
-import Trevi.Dalthow.Common.Reference;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 import Trevi.Dalthow.Manager.ProgressManager;
 import Trevi.Dalthow.Manager.SoundManager;
