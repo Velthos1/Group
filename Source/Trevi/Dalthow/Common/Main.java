@@ -55,13 +55,13 @@ public class Main extends Canvas implements Runnable
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	
-	private BufferedImage Item, Player, Heart, Logo, Button, Map;
+	private BufferedImage Item, Player, Heart, Coin, Logo, Button, Map;
 	private State currentState;
 	private Thread Loop;
 	private Font Console;
 	
 	private static Player Character;
-	
+
 	private enum State
 	{
 		Splash, Game, Menu, Credits, Options
@@ -93,7 +93,7 @@ public class Main extends Canvas implements Runnable
 		}
 		
 		Character = new Player(Reference.Width - 16, Reference.Height - 32, 10.0, this);
-		
+	
 		addKeyListener(new KeyInput(this));
 		addMouseListener(new MouseInput(this));
 		requestFocus();
@@ -250,8 +250,8 @@ public class Main extends Canvas implements Runnable
 		
 		if(currentState == State.Splash)
 		{
-			Graphics.drawImage(Image, 0, 0, getWidth(), getHeight(), this);
-			Graphics.drawImage(Logo, 0, 0, getWidth(), getHeight(), this);
+			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
+			Graphics.drawImage(Logo, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
 		}
 			
 		if(currentState == State.Menu)
@@ -268,6 +268,8 @@ public class Main extends Canvas implements Runnable
 		{
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
 			Graphics.drawImage(Map, (int)Character.getX(), (int)Character.getY(), 1024, 1024, this);
+
+			Graphics.drawImage(Coin, (int)Character.getX(), (int)Character.getY(), 32, 32 , null);
 			
 			Character.render(Graphics, Frame.getWidth(), Frame.getHeight());
 			
@@ -286,6 +288,7 @@ public class Main extends Canvas implements Runnable
 			SpriteGrabber Sprite = new SpriteGrabber(Item);
 			
 			Heart = Sprite.grabItemImage(1, 1, 32, 32);
+			Coin = Sprite.grabItemImage(2, 1, 32, 32);
 			
 			for(int Par1 = 0; Par1 < Character.getHealth(); Par1++)
 			{
@@ -484,5 +487,11 @@ public class Main extends Canvas implements Runnable
 	public BufferedImage getPlayerSpriteSheet()
 	{
 		return Player;
+	}
+
+
+	public BufferedImage getItemSpriteSheet() 
+	{
+		return Item;
 	}
 }
