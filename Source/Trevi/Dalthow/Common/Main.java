@@ -36,6 +36,7 @@ import Trevi.Dalthow.Handler.KeyInput;
 import Trevi.Dalthow.Handler.MouseInput;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 import Trevi.Dalthow.Manager.ProgressManager;
+import Trevi.Dalthow.Object.Item;
 import Trevi.Dalthow.Object.Player;
 
 public class Main extends Canvas implements Runnable
@@ -55,12 +56,14 @@ public class Main extends Canvas implements Runnable
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	
-	private BufferedImage Item, Player, Heart, Coin, Logo, Button, Map;
+	private BufferedImage Item, Player, Heart, Logo, Button, Map;
 	private State currentState;
 	private Thread Loop;
 	private Font Console;
 	
 	private static Player Character;
+	
+	private Item Coin, energyPotion;
 
 	private enum State
 	{
@@ -93,7 +96,7 @@ public class Main extends Canvas implements Runnable
 		}
 		
 		Character = new Player(Reference.Width - 16, Reference.Height - 32, 10.0, this);
-	
+		
 		addKeyListener(new KeyInput(this));
 		addMouseListener(new MouseInput(this));
 		requestFocus();
@@ -268,8 +271,12 @@ public class Main extends Canvas implements Runnable
 		{
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
 			Graphics.drawImage(Map, (int)Character.getX(), (int)Character.getY(), 1024, 1024, this);
-
-			Graphics.drawImage(Coin, (int)Character.getX(), (int)Character.getY(), 32, 32 , null);
+			
+			Coin = new Item(Character.getX(), Character.getY(), 2, 1, this);
+			energyPotion = new Item(Character.getX() + 40, Character.getY(), 3, 1, this);
+			
+			Coin.render(Graphics);
+			energyPotion.render(Graphics);
 			
 			Character.render(Graphics, Frame.getWidth(), Frame.getHeight());
 			
@@ -288,7 +295,6 @@ public class Main extends Canvas implements Runnable
 			SpriteGrabber Sprite = new SpriteGrabber(Item);
 			
 			Heart = Sprite.grabItemImage(1, 1, 32, 32);
-			Coin = Sprite.grabItemImage(2, 1, 32, 32);
 			
 			for(int Par1 = 0; Par1 < Character.getHealth(); Par1++)
 			{
