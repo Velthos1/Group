@@ -13,41 +13,55 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import Trevi.Dalthow.Common.Main;
+import Trevi.Dalthow.Handler.GlobalPosition;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 
-public class Item
+public class Item extends GlobalPosition
 {
-	// Declaration
+	private BufferedImage Icon;
 	
-	private BufferedImage Item;
-	
-	private double xPos;
-	private double yPos;
-	
-	public Item(double xPos, double yPos, int Col, int Row, Main Main)
+	public Item(int xPos, int yPos, int Row, int Col, Main Main) 
 	{
+		super(xPos, yPos);
+		
 		SpriteGrabber Sprite = new SpriteGrabber(Main.getItemSpriteSheet());
 		
-		Item = Sprite.grabItemImage(Col, Row, 32, 32);
-		
-		this.xPos = xPos;
-		this.yPos = yPos;
+		Icon = Sprite.grabItemImage(Row, Col, 32, 32);
 	}
-
-	
-	// Everything in the game that renders
-	
-	public void render(Graphics Graphics)
-	{
-		Graphics.drawImage(Item, (int)xPos, (int)yPos, 32, 32, null);
-	}
-	
-
-	
-	// Everything in the game that updates
 	
 	public void tick() throws Exception
 	{
 		
+	}
+	
+	public void render(Graphics Graphics)
+	{
+		Graphics.drawImage(Icon, (int)Main.Character.getX() + xPos, (int)Main.Character.getY() + yPos, 32, 32, null);
+	}
+	
+	
+	// Getters
+	
+	public int getX()
+	{
+		return xPos;
+	}
+	
+	public int getY()
+	{
+		return yPos;
+	}
+	
+	
+	// Setters 
+	
+	public void setX(int xPos)
+	{
+		this.xPos = xPos;
+	}
+	
+	public void setY(int yPos)
+	{
+		this.yPos = yPos;
 	}
 }
