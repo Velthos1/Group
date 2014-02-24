@@ -254,7 +254,12 @@ public class Main extends Canvas implements Runnable
 			Graphics.drawImage(Logo, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
 		}
 			
-		if(currentState == State.Menu)
+		else if(currentState == State.Title)
+		{
+			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
+		}
+		
+		else if(currentState == State.Menu)
 		{
 			Graphics.drawImage(Image, 0, 0, getWidth(), getHeight(), this);
 			
@@ -264,7 +269,17 @@ public class Main extends Canvas implements Runnable
 			Graphics.drawImage(Button, Reference.Width - 100, Reference.Height + 225, 200, 50, this);
 		}
 		
-		if(currentState == State.Game)
+		else if(currentState == State.Options)
+		{
+			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
+		}
+		
+		else if(currentState == State.Credits)
+		{
+			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
+		}
+		
+		else if(currentState == State.Game)
 		{
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
 			Graphics.drawImage(Map, (int)Character.getX(), (int)Character.getY(), 1024, 1024, this);
@@ -343,22 +358,22 @@ public class Main extends Canvas implements Runnable
 				Info = true;
 			}
 			
-			else if(Key == KeyEvent.VK_F11)
-			{
-				if(isFullScreen == false)
-				{
-					isFullScreen = true;
-				}
-				
-				else
-				{
-					isFullScreen = false;
-				}
-			}
-			
 			else if(Key == KeyEvent.VK_ESCAPE)
 			{
 				currentState = State.Menu;
+			}
+		}
+		
+		if(Key == KeyEvent.VK_F11)
+		{
+			if(isFullScreen == false)
+			{
+				isFullScreen = true;
+			}
+			
+			else
+			{
+				isFullScreen = false;
 			}
 		}
 	}
@@ -420,7 +435,7 @@ public class Main extends Canvas implements Runnable
 					}
 				}
 				
-				if(Par3.x > 380 && Par3.x < 580)
+				else if(Par3.x > 380 && Par3.x < 580)
 				{
 					if(Par3.y > 435 && Par3.y < 485) 
 					{
@@ -428,7 +443,7 @@ public class Main extends Canvas implements Runnable
 					}
 				}
 				
-				if(Par3.x > 380 && Par3.x < 580)
+				else if(Par3.x > 380 && Par3.x < 580)
 				{
 					if(Par3.y > 510 && Par3.y < 560) 
 					{
@@ -436,7 +451,7 @@ public class Main extends Canvas implements Runnable
 					}
 				}
 				
-				if(Par3.x > 380 && Par3.x < 580)
+				else if(Par3.x > 380 && Par3.x < 580)
 				{
 					if(Par3.y > 585 && Par3.y < 635) 
 					{
