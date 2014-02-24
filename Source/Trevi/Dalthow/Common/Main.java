@@ -64,7 +64,7 @@ public class Main extends Canvas implements Runnable
 	
 	private enum State
 	{
-		Splash, Game, Menu, Credits, Options
+		Splash, Title, Game, Menu, Credits, Options
 	}
 	
 	
@@ -419,6 +419,30 @@ public class Main extends Canvas implements Runnable
 						currentState = State.Game;
 					}
 				}
+				
+				if(Par3.x > 380 && Par3.x < 580)
+				{
+					if(Par3.y > 435 && Par3.y < 485) 
+					{
+						currentState = State.Options;
+					}
+				}
+				
+				if(Par3.x > 380 && Par3.x < 580)
+				{
+					if(Par3.y > 510 && Par3.y < 560) 
+					{
+						currentState = State.Title;
+					}
+				}
+				
+				if(Par3.x > 380 && Par3.x < 580)
+				{
+					if(Par3.y > 585 && Par3.y < 635) 
+					{
+						System.exit(0);
+					}
+				}
 			}
 			
 			else if(currentState == State.Options)
@@ -428,7 +452,7 @@ public class Main extends Canvas implements Runnable
 			
 			else if(currentState == State.Game)
 			{
-				Character.dealDamage(1.0);
+				
 			}
 		}
 		
