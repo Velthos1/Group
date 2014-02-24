@@ -10,6 +10,7 @@
 package Trevi.Dalthow.Common;
 
 import java.awt.Canvas;
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -58,7 +59,7 @@ public class Main extends Canvas implements Runnable
 	private BufferedImage Item, Player, Heart, Logo, Button, Map;
 	private State currentState;
 	private Thread Loop;
-	private Font Console;
+	private Font Console, Fancy;
 	
 	public static Player Character;
 	
@@ -85,6 +86,7 @@ public class Main extends Canvas implements Runnable
 			Logo = Loader.loadImage("/Graphics/Splash/Logo.png");
 			
 			Console = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(System.getProperty("user.dir") + "/Resources/Font/Console.ttf"))).deriveFont(Font.PLAIN, 13);
+			Fancy = Font.createFont(Font.TRUETYPE_FONT, new FileInputStream(new File(System.getProperty("user.dir") + "/Resources/Font/Fancy.ttf"))).deriveFont(Font.PLAIN, 28);
 		}
 		
 		catch(IOException Stacktrace)
@@ -267,6 +269,14 @@ public class Main extends Canvas implements Runnable
 			Graphics.drawImage(Button, Reference.Width - 100, Reference.Height + 75, 200, 50, this);
 			Graphics.drawImage(Button, Reference.Width - 100, Reference.Height + 150, 200, 50, this);
 			Graphics.drawImage(Button, Reference.Width - 100, Reference.Height + 225, 200, 50, this);
+			
+			Graphics.setFont(Fancy);
+			Graphics.setColor(Color.black);
+			
+			Graphics.drawString("Return.", 415, 398);
+			Graphics.drawString("Options.", 408, 471);
+			Graphics.drawString("Credits", 417, 548);
+			Graphics.drawString("Exit.", 443, 623);
 		}
 		
 		else if(currentState == State.Options)
@@ -282,7 +292,7 @@ public class Main extends Canvas implements Runnable
 		else if(currentState == State.Game)
 		{
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
-			Graphics.drawImage(Map, (int)Character.getX(), (int)Character.getY(), 1024, 1024, this);
+			Graphics.drawImage(Map, (int)Character.getX(), (int)Character.getY(), 1024, 1024, this);	
 			
 			Character.render(Graphics, Frame.getWidth(), Frame.getHeight());
 			
@@ -435,7 +445,7 @@ public class Main extends Canvas implements Runnable
 					}
 				}
 				
-				else if(Par3.x > 380 && Par3.x < 580)
+				if(Par3.x > 380 && Par3.x < 580)
 				{
 					if(Par3.y > 435 && Par3.y < 485) 
 					{
@@ -443,19 +453,19 @@ public class Main extends Canvas implements Runnable
 					}
 				}
 				
-				else if(Par3.x > 380 && Par3.x < 580)
+				if(Par3.x > 380 && Par3.x < 580)
 				{
 					if(Par3.y > 510 && Par3.y < 560) 
 					{
-						currentState = State.Title;
+						currentState = State.Credits;
 					}
 				}
 				
-				else if(Par3.x > 380 && Par3.x < 580)
+				if(Par3.x > 380 && Par3.x < 580)
 				{
 					if(Par3.y > 585 && Par3.y < 635) 
 					{
-						System.exit(0);
+						currentState = State.Title;
 					}
 				}
 			}
