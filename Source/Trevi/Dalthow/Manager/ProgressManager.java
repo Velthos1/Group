@@ -141,6 +141,7 @@ public class ProgressManager
 					xPos = Double.parseDouble((String) eElement.getElementsByTagName("xPos").item(0).getTextContent());
 					yPos = Double.parseDouble((String) eElement.getElementsByTagName("yPos").item(0).getTextContent());
 					Health = Double.parseDouble((String) eElement.getElementsByTagName("Health").item(0).getTextContent());
+					Energy = Double.parseDouble((String) eElement.getElementsByTagName("Energy").item(0).getTextContent());
 				}
 			}
 		}

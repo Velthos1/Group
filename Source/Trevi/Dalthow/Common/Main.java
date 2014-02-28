@@ -472,7 +472,7 @@ public class Main extends Canvas implements Runnable
 				{
 					if(Par3.y > 585 && Par3.y < 635) 
 					{
-						currentState = State.Title;
+						stop();
 					}
 				}
 			}
