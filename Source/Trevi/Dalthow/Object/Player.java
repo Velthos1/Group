@@ -13,6 +13,7 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import Trevi.Dalthow.Common.Main;
+import Trevi.Dalthow.Common.Reference;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 import Trevi.Dalthow.Manager.ProgressManager;
 import Trevi.Dalthow.Manager.SoundManager;
@@ -30,7 +31,7 @@ public class Player
 	private double xVel;
 	private double yVel;
 	
-	private BufferedImage Player;
+	private BufferedImage upPlayer, downPlayer;
 	
 	public Player(double xPos, double yPos, double Health, Main Main)
 	{
@@ -44,7 +45,8 @@ public class Player
 		
 		SpriteGrabber Sprite = new SpriteGrabber(Main.getPlayerSpriteSheet());
 		
-		Player = Sprite.grabPlayerImage(1, 1, 32, 64);
+		upPlayer = Sprite.grabPlayerImage(1, 1, 32, 64);	
+		downPlayer = Sprite.grabPlayerImage(2, 1, 32, 64);	
 	}
 	
 	
@@ -66,7 +68,15 @@ public class Player
 	
 	public void render(Graphics Graphics, int Par1, int Par2)
 	{
-		Graphics.drawImage(Player, Par1 / 2 - 32, Par2 / 2 - 64, 32, 64, null);
+		if(yVel < 0.1)
+		{
+			Graphics.drawImage(upPlayer, Par1 / 2 - 32, Par2 / 2 - 64, 32 * Reference.Scale, 64 * Reference.Scale, null);
+		}
+		
+		else if(yVel > 0.1)
+		{
+			Graphics.drawImage(downPlayer, Par1 / 2 - 32, Par2 / 2 - 64, 32 * Reference.Scale, 64 * Reference.Scale, null);
+		}
 	}
 	
 	
