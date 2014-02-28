@@ -13,11 +13,14 @@ import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 
 import Trevi.Dalthow.Common.Main;
+import Trevi.Dalthow.Common.Reference;
 import Trevi.Dalthow.Handler.GlobalPosition;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 
 public class Item extends GlobalPosition
 {
+	// Declaration
+	
 	private BufferedImage Icon;
 	
 	public Item(int xPos, int yPos, int Row, int Col, Main Main) 
@@ -29,10 +32,16 @@ public class Item extends GlobalPosition
 		Icon = Sprite.grabItemImage(Row, Col, 32, 32);
 	}
 	
+	
+	// Everything in the game that updates
+	
 	public void tick() throws Exception
 	{
 		
 	}
+
+	
+	// Everything in the game that renders
 	
 	public void render(Graphics Graphics)
 	{

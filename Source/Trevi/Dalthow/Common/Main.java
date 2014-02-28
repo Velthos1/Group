@@ -36,7 +36,9 @@ import Trevi.Dalthow.Handler.BufferLoader;
 import Trevi.Dalthow.Handler.KeyInput;
 import Trevi.Dalthow.Handler.MouseInput;
 import Trevi.Dalthow.Handler.SpriteGrabber;
+import Trevi.Dalthow.Manager.ItemManager;
 import Trevi.Dalthow.Manager.ProgressManager;
+import Trevi.Dalthow.Object.Item;
 import Trevi.Dalthow.Object.Player;
 
 public class Main extends Canvas implements Runnable
@@ -62,6 +64,8 @@ public class Main extends Canvas implements Runnable
 	private Font Console, Fancy;
 	
 	public static Player Character;
+	
+	private ItemManager Items;
 	
 	private enum State
 	{
@@ -95,6 +99,7 @@ public class Main extends Canvas implements Runnable
 		}
 		
 		Character = new Player(Reference.Width - 16, Reference.Height - 32, 10.0, this);
+		Items = new ItemManager();
 		
 		addKeyListener(new KeyInput(this));
 		addMouseListener(new MouseInput(this));
@@ -221,6 +226,7 @@ public class Main extends Canvas implements Runnable
 		else if(currentState == State.Game)
 		{
 			Character.tick();
+			Items.tick();
 		}
 		
 		if(isFullScreen == true)
@@ -294,6 +300,7 @@ public class Main extends Canvas implements Runnable
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
 			Graphics.drawImage(Map, (int)Character.getX(), (int)Character.getY(), 1024, 1024, this);	
 			
+			Items.render(Graphics);
 			Character.render(Graphics, Frame.getWidth(), Frame.getHeight());
 			
 			if(Info == true)
