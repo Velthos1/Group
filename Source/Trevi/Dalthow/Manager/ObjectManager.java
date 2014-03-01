@@ -10,10 +10,10 @@
 package Trevi.Dalthow.Manager;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import Trevi.Dalthow.Common.Main;
+import Trevi.Dalthow.Object.Block;
 import Trevi.Dalthow.Object.Item;
 
 public class ObjectManager
@@ -21,8 +21,11 @@ public class ObjectManager
 	// Declaration
 	
 	public LinkedList<Item> Items = new LinkedList<Item>();
-	public Item tempItem;
+	public LinkedList<Block> Blocks = new LinkedList<Block>();
 	
+	public Item tempItem;
+	public Block tempBlock;
+
 	
 	// Everything in the game that renders
 	
@@ -37,6 +40,19 @@ public class ObjectManager
 	}
 	
 	
+	// Everything in the game that renders
+	
+	public void renderBlock(Graphics Graphics)
+	{
+		for(int Par1 = 0; Par1 < Blocks.size(); Par1++)
+		{
+			tempBlock = Blocks.get(Par1);
+			
+			tempBlock.render(Graphics);
+		}
+	}
+	
+	
 	// Everything in the game that updates
 	
 	public void tickItem() throws Exception
@@ -47,10 +63,49 @@ public class ObjectManager
 		
 			if(tempItem.getBounds().intersects(Main.Character.getBounds(Main.Frame.getWidth(), Main.Frame.getHeight())))
 			{
+				if(tempItem.getName() == "Heart")
+				{
+					removeItem(Par1);
+					SoundManager.playSound("Pickup.wav");
+				}
 				
+				else if(tempItem.getName() == "Coin")
+				{
+					removeItem(Par1);
+					SoundManager.playSound("Pickup.wav");
+				}
+				
+				else if(tempItem.getName() == "Potion")
+				{
+					removeItem(Par1);
+					SoundManager.playSound("Pickup.wav");
+				}
 			}
 			
 			tempItem.tick();	
+		}
+	}
+	
+	
+	// Everything in the game that updates
+	
+	public void tickBlock() throws Exception
+	{
+		for(int Par1 = 0; Par1 < Blocks.size(); Par1++)
+		{
+			tempBlock = Blocks.get(Par1);
+		
+			if(tempBlock.getBounds().intersects(Main.Character.getBounds(Main.Frame.getWidth(), Main.Frame.getHeight())))
+			{
+				if(tempBlock.getName() == "closedChest")
+				{
+					addBlock(new Block(2, 1, tempBlock.getX(), tempBlock.getY(), Main.Instance, "openChest"));
+					
+					removeBlock(Par1);
+				}
+			}
+			
+			tempBlock.tick();	
 		}
 	}
 	
@@ -63,10 +118,26 @@ public class ObjectManager
 	}
 	
 	
+	// Adds a record to the linked list 
+	
+	public void addBlock(Block Block)
+	{
+		Blocks.add(Block);
+	}
+	
+	
 	// Removes a record from the linked list
 	
 	public void removeItem(int Record)
 	{
 		Items.remove(Record);
+	}
+	
+	
+	// Removes a record from the linked list
+	
+	public void removeBlock(int Record)
+	{
+		Blocks.remove(Record);
 	}
 }

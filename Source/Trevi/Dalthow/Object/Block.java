@@ -14,25 +14,32 @@ import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import Trevi.Dalthow.Common.Main;
+import Trevi.Dalthow.Common.Reference;
 import Trevi.Dalthow.Handler.GlobalPosition;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 
-public class Item extends GlobalPosition
+public class Block extends GlobalPosition
 {
 	// Declaration
 	
 	private BufferedImage Icon;
 	private String Name;
 	
-	public Item(int Row, int Col, int xPos, int yPos, Main Main, String Name) 
+	private int xPos;
+	private int yPos;
+	
+	public Block(int Row, int Col, int xPos, int yPos, Main Main, String Name) 
 	{
 		super(xPos, yPos);
 		
 		this.Name = Name;
 		
-		SpriteGrabber Sprite = new SpriteGrabber(Main.getItemSpriteSheet());
+		this.xPos = xPos;
+		this.yPos = yPos;
 		
-		Icon = Sprite.grabItemImage(Row, Col, 32, 32);
+		SpriteGrabber Sprite = new SpriteGrabber(Main.getBlockSpriteSheet());
+		
+		Icon = Sprite.grabBlockImage(Row, Col, 32, 32);
 	}
 	
 	
@@ -48,7 +55,7 @@ public class Item extends GlobalPosition
 	
 	public Rectangle getBounds()
 	{
-		return new Rectangle((int)Main.Character.getX() + xPos, (int)Main.Character.getY() + yPos, 32, 32);
+		return new Rectangle((int)Main.Character.getX() + xPos, (int)Main.Character.getY() + yPos, 32* Reference.Scale, 32* Reference.Scale);
 	}
 	
 	
@@ -56,7 +63,7 @@ public class Item extends GlobalPosition
 	
 	public void render(Graphics Graphics)
 	{
-		Graphics.drawImage(Icon, (int)Main.Character.getX() + xPos, (int)Main.Character.getY() + yPos, 32, 32, null);
+		Graphics.drawImage(Icon, (int)Main.Character.getX() + xPos, (int)Main.Character.getY() + yPos, 32 * Reference.Scale, 32 * Reference.Scale, null);
 		
 		if(Main.Info == true)
 		{

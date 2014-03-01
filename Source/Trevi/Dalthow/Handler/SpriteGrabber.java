@@ -33,6 +33,16 @@ public class SpriteGrabber
 	}
 	
 	
+	// Grabs the image of the sprite sheet based on the row and columns, this one is used for the blocks.
+	
+	public BufferedImage grabBlockImage(int Col, int Row, int Width, int Height)
+	{
+		BufferedImage Graphic = Image.getSubimage((Col * 32) - 32, (Row * 32) - 32, Width, Height);
+		
+		return Graphic;
+	}
+	
+	
 	// Grabs the image of the sprite sheet based on the row and columns, this one is used for the player.
 	
 	public BufferedImage grabPlayerImage(int Col, int Row, int Width, int Height)
