@@ -10,6 +10,7 @@
 package Trevi.Dalthow.Object;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import Trevi.Dalthow.Common.Main;
@@ -61,6 +62,24 @@ public class Player
 		{
 			respawn();
 		}
+		
+		Collision();
+	}
+	
+	
+	// Checks for collisions with other objects
+	
+	private void Collision() 
+	{
+
+	}
+
+
+	// Creates a rectangle around used to player to measure collisions with other objects
+	
+	public Rectangle getBounds(int Par1, int Par2)
+	{
+		return new Rectangle(Par1 / 2 - 32, Par2 / 2 - 64, 32 * Reference.Scale, 64 * Reference.Scale);
 	}
 	
 	

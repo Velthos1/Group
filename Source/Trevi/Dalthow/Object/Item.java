@@ -10,6 +10,7 @@
 package Trevi.Dalthow.Object;
 
 import java.awt.Graphics;
+import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
 import Trevi.Dalthow.Common.Main;
@@ -22,7 +23,7 @@ public class Item extends GlobalPosition
 	
 	private BufferedImage Icon;
 	
-	public Item(int xPos, int yPos, int Row, int Col, Main Main) 
+	public Item(int Row, int Col, int xPos, int yPos, Main Main) 
 	{
 		super(xPos, yPos);
 		
@@ -39,6 +40,14 @@ public class Item extends GlobalPosition
 		
 	}
 
+	
+	// Creates a rectangle around used to player to measure collisions with other objects
+	
+	public Rectangle getBounds()
+	{
+		return new Rectangle((int)Main.Character.getX() + xPos, (int)Main.Character.getY() + yPos, 32, 32);
+	}
+	
 	
 	// Everything in the game that renders
 	
