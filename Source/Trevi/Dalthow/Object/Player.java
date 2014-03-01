@@ -96,6 +96,11 @@ public class Player
 		{
 			Graphics.drawImage(downPlayer, Par1 / 2 - 32, Par2 / 2 - 64, 32 * Reference.Scale, 64 * Reference.Scale, null);
 		}
+		
+		if(Main.Info == true)
+		{
+			Graphics.drawRect((int)getBounds(Par1, Par2).getX(), (int)getBounds(Par1, Par2).getY(), (int)getBounds(Par1, Par2).getWidth(), (int)getBounds(Par1, Par2).getHeight());
+		}
 	}
 	
 	

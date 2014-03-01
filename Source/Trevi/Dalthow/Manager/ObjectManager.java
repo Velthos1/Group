@@ -45,7 +45,7 @@ public class ObjectManager
 		{
 			tempItem = Items.get(Par1);
 		
-			if(tempItem.getBounds().intersects(Main.Character.getBounds(Main.getFrameWidth(), Main.getFrameHeight())))
+			if(tempItem.getBounds().intersects(Main.Character.getBounds(Main.Frame.getWidth(), Main.Frame.getHeight())))
 			{
 				
 			}

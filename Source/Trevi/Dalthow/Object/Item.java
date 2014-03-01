@@ -54,6 +54,11 @@ public class Item extends GlobalPosition
 	public void render(Graphics Graphics)
 	{
 		Graphics.drawImage(Icon, (int)Main.Character.getX() + xPos, (int)Main.Character.getY() + yPos, 32, 32, null);
+		
+		if(Main.Info == true)
+		{
+			Graphics.drawRect((int)getBounds().getX(), (int)getBounds().getY(), (int)getBounds().getWidth(), (int)getBounds().getHeight());
+		}
 	}
 	
 	

@@ -47,14 +47,15 @@ public class Main extends Canvas implements Runnable
 	
 	private boolean isRunning = false;
 	private boolean isFullScreen = false;	
-	private boolean Info = false;
+	
+	public static boolean Info = false;
 	
 	private int Frames, absoluteFrames;
 	private int Ticks, absoluteTicks;
 	
 	private Calendar Time = Calendar.getInstance();
 	
-	private static JFrame Frame = new JFrame(Reference.Title);
+	public static JFrame Frame = new JFrame(Reference.Title);
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	
@@ -549,15 +550,5 @@ public class Main extends Canvas implements Runnable
 	public BufferedImage getItemSpriteSheet() 
 	{
 		return Item;
-	}
-	
-	public static int getFrameHeight()
-	{
-		return Frame.getHeight();
-	}
-	
-	public static int getFrameWidth()
-	{
-		return Frame.getWidth();
 	}
 }
