@@ -107,8 +107,15 @@ public class ObjectManager
 					
 					addBlock(new Block(2, 1, tempBlock.getX(), tempBlock.getY(), Main.Instance, "openChest"));
 					
-					addItem(new Item(2, 1, tempBlock.getX() + RandomGenerator.randomNumber(-35, 35), tempBlock.getY() + RandomGenerator.randomNumber(-35, 35), Main.Instance, "Coin"));
-					addItem(new Item(3, 1, tempBlock.getX() + RandomGenerator.randomNumber(-35, 35), tempBlock.getY() + RandomGenerator.randomNumber(-35, 35), Main.Instance, "Potion"));
+					for(int Par2 = RandomGenerator.randomNumber(0, 3); Par2 > 0; Par2--)
+					{
+						addItem(new Item(2, 1, tempBlock.getX() + RandomGenerator.randomNumber(-35, 35), tempBlock.getY() + RandomGenerator.randomNumber(-35, 35), Main.Instance, "Coin"));
+					}
+					
+					for(int Par2 = RandomGenerator.randomNumber(0, 1); Par2 > 0; Par2--)
+					{
+						addItem(new Item(3, 1, tempBlock.getX() + RandomGenerator.randomNumber(-35, 35), tempBlock.getY() + RandomGenerator.randomNumber(-35, 35), Main.Instance, "Potion"));
+					}
 					
 					removeBlock(Par1);
 				}
