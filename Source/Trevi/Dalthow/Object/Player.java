@@ -62,18 +62,8 @@ public class Player
 		{
 			respawn();
 		}
-		
-		Collision();
 	}
 	
-	
-	// Checks for collisions with other objects
-	
-	private void Collision() 
-	{
-
-	}
-
 
 	// Creates a rectangle around used to player to measure collisions with other objects
 	
@@ -151,6 +141,16 @@ public class Player
 	public double getY()
 	{
 		return yPos;
+	}
+	
+	public double getVelX()
+	{
+		return xVel;
+	}
+	
+	public double getVelY()
+	{
+		return yVel;
 	}
 	
 	public double getHealth()

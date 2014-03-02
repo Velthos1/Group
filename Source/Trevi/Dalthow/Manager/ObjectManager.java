@@ -11,10 +11,12 @@ package Trevi.Dalthow.Manager;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
+import java.util.Random;
 
 import Trevi.Dalthow.Common.Main;
 import Trevi.Dalthow.Object.Block;
 import Trevi.Dalthow.Object.Item;
+import Trevi.Dalthow.Util.RandomGenerator;
 
 public class ObjectManager
 {
@@ -99,7 +101,12 @@ public class ObjectManager
 			{
 				if(tempBlock.getName() == "closedChest")
 				{
+					SoundManager.playSound("Chest.wav");
+					
 					addBlock(new Block(2, 1, tempBlock.getX(), tempBlock.getY(), Main.Instance, "openChest"));
+					
+					addItem(new Item(2, 1, tempBlock.getX() + RandomGenerator.randomNumber(-50, 50), tempBlock.getY() + RandomGenerator.randomNumber(-50, 50), Main.Instance, "Coin"));
+					addItem(new Item(3, 1, tempBlock.getX() + RandomGenerator.randomNumber(-50, 50), tempBlock.getY() + RandomGenerator.randomNumber(-50, 50), Main.Instance, "Potion"));
 					
 					removeBlock(Par1);
 				}

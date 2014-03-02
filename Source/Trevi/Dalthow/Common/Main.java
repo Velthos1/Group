@@ -26,7 +26,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Calendar;
-import java.util.Random;
 
 import javax.imageio.ImageIO;
 import javax.swing.JFrame;
@@ -39,9 +38,10 @@ import Trevi.Dalthow.Handler.MouseInput;
 import Trevi.Dalthow.Handler.SpriteGrabber;
 import Trevi.Dalthow.Manager.ObjectManager;
 import Trevi.Dalthow.Manager.ProgressManager;
-import Trevi.Dalthow.Object.Item;
 import Trevi.Dalthow.Object.Block;
+import Trevi.Dalthow.Object.Item;
 import Trevi.Dalthow.Object.Player;
+import Trevi.Dalthow.Util.RandomGenerator;
 
 public class Main extends Canvas implements Runnable
 {
@@ -61,7 +61,7 @@ public class Main extends Canvas implements Runnable
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	
-	private BufferedImage Item, Block, Player, Heart, Logo, Button, Map;
+	private BufferedImage Item, Block, Player, Shadow, Heart, Logo, Button, Map;
 	private State currentState;
 	private Thread Loop;
 	private Font Console, Fancy;
@@ -92,6 +92,7 @@ public class Main extends Canvas implements Runnable
 			Item = Loader.loadImage("/Graphics/Game/Object/Item.png");
 			Block = Loader.loadImage("/Graphics/Game/Object/Block.png");
 			Player = Loader.loadImage("/Graphics/Game/Object/Player.png");
+			Shadow = Loader.loadImage("/Graphics/Game/Terrain/Shadow.png");
 			Map = Loader.loadImage("/Graphics/Game/Terrain/Map.png");
 			Button = Loader.loadImage("/Graphics/Menu/Button.png");
 			Logo = Loader.loadImage("/Graphics/Splash/Logo.png");
@@ -109,13 +110,7 @@ public class Main extends Canvas implements Runnable
 		
 		Object = new ObjectManager();
 		
-		Object.addItem(new Item(1, 1, 200, 200, this, "Heart"));
-		Object.addItem(new Item(2, 1, 300, 200, this, "Coin"));
-		Object.addItem(new Item(3, 1, 200, 300, this, "Potion"));
-		
 		Object.addBlock(new Block(1, 1, 200, 400, this, "closedChest"));
-		
-		Object.addBlock(new Block(1, 1, 200, 500, this, "closedChest"));
 		
 		addKeyListener(new KeyInput(this));
 		addMouseListener(new MouseInput(this));
@@ -318,8 +313,10 @@ public class Main extends Canvas implements Runnable
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
 			Graphics.drawImage(Map, (int)Character.getX(), (int)Character.getY(), 1024, 1024, this);	
 			
-			Object.renderItem(Graphics);
 			Object.renderBlock(Graphics);
+			Object.renderItem(Graphics);
+			
+			Graphics.drawImage(Shadow, Frame.getWidth() / 2 - 48, Frame.getHeight() / 2 + 15, 48 * Reference.Scale, 48 * Reference.Scale, this);	
 			
 			Character.render(Graphics, Frame.getWidth(), Frame.getHeight());
 			
