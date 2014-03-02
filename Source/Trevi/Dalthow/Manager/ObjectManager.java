@@ -82,6 +82,8 @@ public class ObjectManager
 					removeItem(Par1);
 					SoundManager.playSound("Pickup.wav");
 				}
+				
+				
 			}
 			
 			tempItem.tick();	
@@ -105,8 +107,8 @@ public class ObjectManager
 					
 					addBlock(new Block(2, 1, tempBlock.getX(), tempBlock.getY(), Main.Instance, "openChest"));
 					
-					addItem(new Item(2, 1, tempBlock.getX() + RandomGenerator.randomNumber(-50, 50), tempBlock.getY() + RandomGenerator.randomNumber(-50, 50), Main.Instance, "Coin"));
-					addItem(new Item(3, 1, tempBlock.getX() + RandomGenerator.randomNumber(-50, 50), tempBlock.getY() + RandomGenerator.randomNumber(-50, 50), Main.Instance, "Potion"));
+					addItem(new Item(2, 1, tempBlock.getX() + RandomGenerator.randomNumber(-35, 35), tempBlock.getY() + RandomGenerator.randomNumber(-35, 35), Main.Instance, "Coin"));
+					addItem(new Item(3, 1, tempBlock.getX() + RandomGenerator.randomNumber(-35, 35), tempBlock.getY() + RandomGenerator.randomNumber(-35, 35), Main.Instance, "Potion"));
 					
 					removeBlock(Par1);
 				}
