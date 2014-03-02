@@ -11,7 +11,6 @@ package Trevi.Dalthow.Manager;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
-import java.util.Random;
 
 import Trevi.Dalthow.Common.Main;
 import Trevi.Dalthow.Object.Block;
@@ -107,7 +106,7 @@ public class ObjectManager
 					
 					addBlock(new Block(2, 1, tempBlock.getX(), tempBlock.getY(), Main.Instance, "openChest"));
 					
-					for(int Par2 = RandomGenerator.randomNumber(0, 3); Par2 > 0; Par2--)
+					for(int Par2 = RandomGenerator.randomNumber(1, 3); Par2 > 0; Par2--)
 					{
 						addItem(new Item(2, 1, tempBlock.getX() + RandomGenerator.randomNumber(-35, 35), tempBlock.getY() + RandomGenerator.randomNumber(-35, 35), Main.Instance, "Coin"));
 					}
