@@ -39,9 +39,7 @@ import Trevi.Dalthow.Handler.SpriteGrabber;
 import Trevi.Dalthow.Manager.ObjectManager;
 import Trevi.Dalthow.Manager.ProgressManager;
 import Trevi.Dalthow.Object.Block;
-import Trevi.Dalthow.Object.Item;
 import Trevi.Dalthow.Object.Player;
-import Trevi.Dalthow.Util.RandomGenerator;
 
 public class Main extends Canvas implements Runnable
 {
@@ -111,7 +109,9 @@ public class Main extends Canvas implements Runnable
 		Object = new ObjectManager();
 		
 		Object.addBlock(new Block(1, 1, 200, 400, this, "closedChest"));
-		Object.addBlock(new Block(3, 1, 200, 600, this, "Wall"));
+	
+		Object.addBlock(new Block(3, 1, 0, 0, this, "Wall"));
+		Object.addBlock(new Block(3, 1, 0, 64, this, "Wall"));
 		
 		addKeyListener(new KeyInput(this));
 		addMouseListener(new MouseInput(this));
@@ -363,6 +363,7 @@ public class Main extends Canvas implements Runnable
 				if(Character.canMoveUp == true)
 				{
 					Character.setVelY(movementSpeed);
+					Character.canMoveDown = true;
 				}
 			}
 			
@@ -371,6 +372,7 @@ public class Main extends Canvas implements Runnable
 				if(Character.canMoveDown == true)
 				{
 					Character.setVelY(- movementSpeed);
+					Character.canMoveUp = true;
 				}
 			}
 			
@@ -379,6 +381,7 @@ public class Main extends Canvas implements Runnable
 				if(Character.canMoveRight == true)
 				{
 					Character.setVelX(- movementSpeed);
+					Character.canMoveLeft = true;
 				}
 			}
 			
@@ -387,6 +390,7 @@ public class Main extends Canvas implements Runnable
 				if(Character.canMoveLeft == true)
 				{
 					Character.setVelX(movementSpeed);
+					Character.canMoveRight = true;
 				}
 			}
 
@@ -461,21 +465,25 @@ public class Main extends Canvas implements Runnable
 			if(Key == KeyEvent.VK_W)
 			{
 				Character.setVelY(0);
+				Character.canMoveUp = true;
 			}
 			
 			else if(Key == KeyEvent.VK_S)
 			{
 				Character.setVelY(0);
+				Character.canMoveDown = true;
 			}
 			
 			else if(Key == KeyEvent.VK_D)
 			{
 				Character.setVelX(0);
+				Character.canMoveRight = true;
 			}
 			
 			else if(Key == KeyEvent.VK_A)
 			{
 				Character.setVelX(0);
+				Character.canMoveLeft = true;
 			}
 			
 			else if(Key == KeyEvent.VK_F3)

@@ -70,14 +70,6 @@ public class Block extends GlobalPosition
 			Main.Character.setVelX(0);
 			Main.Character.canMoveLeft = false;
 		}
-		
-		else
-		{
-			Main.Character.canMoveDown = true;
-			Main.Character.canMoveUp = true;
-			Main.Character.canMoveRight = true;
-			Main.Character.canMoveLeft = true;
-		}
 	}
 
 	
