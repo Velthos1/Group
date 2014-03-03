@@ -85,17 +85,17 @@ public class Player
 	
 	public Rectangle getBoundsTop(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 64, 32 / 2 * Reference.Scale, 64 * Reference.Scale / 2);
+		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 32, 32 / 2 * Reference.Scale, 64 * Reference.Scale / 2);
 	}
 	
 	public Rectangle getBoundsRight(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 32 + 32 * Reference.Scale - 5 * Reference.Scale, Par2 / 2 - 64 + 5 * Reference.Scale, 5 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
+		return new Rectangle(Par1 / 2 - 32 + 32 * Reference.Scale - 5 * Reference.Scale, Par2 / 2 - 32 + 5 * Reference.Scale, 5 * Reference.Scale, 48 * Reference.Scale - 10 * Reference.Scale);
 	}
 	
 	public Rectangle getBoundsLeft(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 32, Par2 / 2 - 64 + 5 * Reference.Scale, 5 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
+		return new Rectangle(Par1 / 2 - 32, Par2 / 2 - 32 + 5 * Reference.Scale, 5 * Reference.Scale, 48 * Reference.Scale - 10 * Reference.Scale);
 	}
 	
 	
