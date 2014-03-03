@@ -10,6 +10,7 @@
 package Trevi.Dalthow.Object;
 
 import java.awt.Graphics;
+import java.awt.Graphics2D;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
@@ -33,6 +34,11 @@ public class Player
 	private double yVel;
 	
 	private BufferedImage upPlayer, downPlayer;
+	
+	public boolean canMoveUp = true;
+	public boolean canMoveDown = true;
+	public boolean canMoveRight = true;
+	public boolean canMoveLeft = true;
 	
 	public Player(double xPos, double yPos, double Health, Main Main)
 	{
@@ -72,6 +78,26 @@ public class Player
 		return new Rectangle(Par1 / 2 - 32, Par2 / 2 - 64, 32 * Reference.Scale, 64 * Reference.Scale);
 	}
 	
+	public Rectangle getBoundsBottom(int Par1, int Par2)
+	{
+		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 64 + (64 / 2 * Reference.Scale), 32 / 2 * Reference.Scale, 64 * Reference.Scale / 2);
+	}
+	
+	public Rectangle getBoundsTop(int Par1, int Par2)
+	{
+		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 64, 32 / 2 * Reference.Scale, 64 * Reference.Scale / 2);
+	}
+	
+	public Rectangle getBoundsRight(int Par1, int Par2)
+	{
+		return new Rectangle(Par1 / 2 - 32 + 32 * Reference.Scale - 5 * Reference.Scale, Par2 / 2 - 64 + 5 * Reference.Scale, 5 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
+	}
+	
+	public Rectangle getBoundsLeft(int Par1, int Par2)
+	{
+		return new Rectangle(Par1 / 2 - 32, Par2 / 2 - 64 + 5 * Reference.Scale, 5 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
+	}
+	
 	
 	// Everything in the game that renders
 	
@@ -89,7 +115,14 @@ public class Player
 		
 		if(Main.Info == true)
 		{
-			Graphics.drawRect((int)getBounds(Par1, Par2).getX(), (int)getBounds(Par1, Par2).getY(), (int)getBounds(Par1, Par2).getWidth(), (int)getBounds(Par1, Par2).getHeight());
+			Graphics2D Par3 = (Graphics2D) Graphics;
+			
+			Par3.draw(getBounds(Par1, Par2));
+			
+			Par3.draw(getBoundsTop(Par1, Par2));
+			Par3.draw(getBoundsBottom(Par1, Par2));
+			Par3.draw(getBoundsLeft(Par1, Par2));
+			Par3.draw(getBoundsRight(Par1, Par2));
 		}
 	}
 	

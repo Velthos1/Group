@@ -359,22 +359,34 @@ public class Main extends Canvas implements Runnable
 		{
 			if(Key == KeyEvent.VK_W)
 			{
-				Character.setVelY(movementSpeed);
+				if(Character.canMoveUp == true)
+				{
+					Character.setVelY(movementSpeed);
+				}
 			}
 			
 			else if(Key == KeyEvent.VK_S)
 			{
-				Character.setVelY(- movementSpeed);
+				if(Character.canMoveDown == true)
+				{
+					Character.setVelY(- movementSpeed);
+				}
 			}
 			
 			else if(Key == KeyEvent.VK_D)
 			{
-				Character.setVelX(- movementSpeed);
+				if(Character.canMoveRight == true)
+				{
+					Character.setVelX(- movementSpeed);
+				}
 			}
 			
 			else if(Key == KeyEvent.VK_A)
 			{
-				Character.setVelX(movementSpeed);
+				if(Character.canMoveLeft == true)
+				{
+					Character.setVelX(movementSpeed);
+				}
 			}
 
 			else if(Key == KeyEvent.VK_F2)
