@@ -9,6 +9,7 @@
 
 package Trevi.Dalthow.Object;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Rectangle;
@@ -80,12 +81,12 @@ public class Player
 	
 	public Rectangle getBoundsBottom(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 64 + (64 / 2 * Reference.Scale), 32 / 2 * Reference.Scale, 64 * Reference.Scale / 2);
+		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 48 + (64 / 2 * Reference.Scale), 32 / 2 * Reference.Scale, 48 * Reference.Scale / 2);
 	}
 	
 	public Rectangle getBoundsTop(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 32, 32 / 2 * Reference.Scale, 64 * Reference.Scale / 2);
+		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 32, 32 / 2 * Reference.Scale, 32 * Reference.Scale / 2);
 	}
 	
 	public Rectangle getBoundsRight(int Par1, int Par2)
@@ -117,12 +118,20 @@ public class Player
 		{
 			Graphics2D Par3 = (Graphics2D) Graphics;
 			
-			Par3.draw(getBounds(Par1, Par2));
-			
+			Par3.setColor(Color.red);
 			Par3.draw(getBoundsTop(Par1, Par2));
+			
+			Par3.setColor(Color.blue);
 			Par3.draw(getBoundsBottom(Par1, Par2));
+			
+			Par3.setColor(Color.green);
 			Par3.draw(getBoundsLeft(Par1, Par2));
+			
+			Par3.setColor(Color.yellow);
 			Par3.draw(getBoundsRight(Par1, Par2));
+			
+			Par3.setColor(Color.darkGray);
+			Par3.draw(getBounds(Par1, Par2));
 		}
 	}
 	
