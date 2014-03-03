@@ -10,7 +10,6 @@
 package Trevi.Dalthow.Manager;
 
 import java.awt.Graphics;
-import java.awt.Rectangle;
 import java.util.LinkedList;
 
 import Trevi.Dalthow.Common.Main;
@@ -107,48 +106,16 @@ public class ObjectManager
 
 					for(int Par2 = RandomGenerator.randomNumber(1, 3); Par2 > 0; Par2--)
 					{
-						addItem(new Item(2, 1, tempBlock.getX() + RandomGenerator.randomNumber(-35, 35), tempBlock.getY() + RandomGenerator.randomNumber(-35, 35), Main.Instance, "Coin"));
+						addItem(new Item(2, 1, tempBlock.getX() + 10 + RandomGenerator.randomNumber(-32, 32), tempBlock.getY() + 10 + RandomGenerator.randomNumber(-32, 32), Main.Instance, "Coin"));
 					}
 
 					for(int Par2 = RandomGenerator.randomNumber(0, 1); Par2 > 0; Par2--)
 					{
-						addItem(new Item(3, 1, tempBlock.getX() + RandomGenerator.randomNumber(-35, 35), tempBlock.getY() + RandomGenerator.randomNumber(-35, 35), Main.Instance, "Potion"));
+						addItem(new Item(3, 1, tempBlock.getX() + 10 + RandomGenerator.randomNumber(-32, 32), tempBlock.getY() + 10 + RandomGenerator.randomNumber(-32, 32), Main.Instance, "Potion"));
 					}
-
+					
 					removeBlock(Par1);
 				}
-			}
-			
-			if(Main.Character.getBoundsBottom(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(tempBlock.getBounds()))
-			{
-				Main.Character.setVelY(0);
-				Main.Character.canMoveDown = false;
-			}
-			
-			else if(Main.Character.getBoundsTop(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(tempBlock.getBounds()))
-			{
-				Main.Character.setVelY(0);
-				Main.Character.canMoveUp = false;
-			}
-			
-			else if(Main.Character.getBoundsRight(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(tempBlock.getBounds()))
-			{
-				Main.Character.setVelX(0);
-				Main.Character.canMoveRight = false;
-			}
-			
-			else if(Main.Character.getBoundsLeft(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(tempBlock.getBounds()))
-			{
-				Main.Character.setVelX(0);
-				Main.Character.canMoveLeft = false;
-			}
-			
-			else
-			{
-				Main.Character.canMoveDown = true;
-				Main.Character.canMoveUp = true;
-				Main.Character.canMoveRight = true;
-				Main.Character.canMoveLeft = true;
 			}
 			
 			tempBlock.tick();	

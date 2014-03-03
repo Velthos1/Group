@@ -111,6 +111,7 @@ public class Main extends Canvas implements Runnable
 		Object = new ObjectManager();
 		
 		Object.addBlock(new Block(1, 1, 200, 400, this, "closedChest"));
+		Object.addBlock(new Block(3, 1, 200, 600, this, "Wall"));
 		
 		addKeyListener(new KeyInput(this));
 		addMouseListener(new MouseInput(this));

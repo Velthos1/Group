@@ -47,7 +47,37 @@ public class Block extends GlobalPosition
 	
 	public void tick() throws Exception
 	{
+		if(Main.Character.getBoundsBottom(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
+		{
+			Main.Character.setVelY(0);
+			Main.Character.canMoveDown = false;
+		}
 		
+		else if(Main.Character.getBoundsTop(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
+		{
+			Main.Character.setVelY(0);
+			Main.Character.canMoveUp = false;
+		}
+		
+		else if(Main.Character.getBoundsRight(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
+		{
+			Main.Character.setVelX(0);
+			Main.Character.canMoveRight = false;
+		}
+		
+		else if(Main.Character.getBoundsLeft(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
+		{
+			Main.Character.setVelX(0);
+			Main.Character.canMoveLeft = false;
+		}
+		
+		else
+		{
+			Main.Character.canMoveDown = true;
+			Main.Character.canMoveUp = true;
+			Main.Character.canMoveRight = true;
+			Main.Character.canMoveLeft = true;
+		}
 	}
 
 	
