@@ -38,6 +38,7 @@ import Trevi.Group.Handler.MouseInput;
 import Trevi.Group.Handler.SpriteGrabber;
 import Trevi.Group.Manager.ObjectManager;
 import Trevi.Group.Manager.ProgressManager;
+import Trevi.Group.Manager.SoundManager;
 import Trevi.Group.Object.Block;
 import Trevi.Group.Object.Player;
 import Trevi.Group.Util.MathHelper;
@@ -47,13 +48,14 @@ public class Main extends Canvas implements Runnable
 	// Declaration
 	
 	private boolean isRunning = false;
-	private boolean isFullScreen = false;
 	private boolean canAttack = true;
 	
 	public static boolean Info = false;
 	
 	private int Frames, absoluteFrames;
 	private int Ticks, absoluteTicks;
+	
+	private double creditSpeed;
 	
 	private Calendar Time = Calendar.getInstance();
 	
@@ -84,6 +86,7 @@ public class Main extends Canvas implements Runnable
 	{
 		Instance = this;
 		currentState = State.Splash;
+		creditSpeed = 0;
 		
 		BufferLoader Loader = new BufferLoader();
 		
@@ -251,14 +254,9 @@ public class Main extends Canvas implements Runnable
 			Object.tickBlock();
 		}
 		
-		if(isFullScreen == true)
+		else if(currentState == State.Credits)
 		{
-			Frame.setExtendedState(java.awt.Frame.MAXIMIZED_BOTH);
-		}
-		
-		else
-		{
-			Frame.setExtendedState(java.awt.Frame.NORMAL);
+			creditSpeed += 0.4;
 		}
 	}
 	
@@ -316,6 +314,12 @@ public class Main extends Canvas implements Runnable
 		else if(currentState == State.Credits)
 		{
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
+
+			Graphics.setFont(Fancy.deriveFont(Font.PLAIN, 48));
+			Graphics.drawString("Group 12", Frame.getWidth() / 2 - 95, (int) (800 - creditSpeed));
+			
+			Graphics.setFont(Fancy.deriveFont(Font.PLAIN, 28));
+			Graphics.drawString("Created by Dalthow Game Studios", Frame.getWidth() / 2 - 270, (int) (875 - creditSpeed));
 		}
 		
 		else if(currentState == State.Game)
@@ -467,19 +471,9 @@ public class Main extends Canvas implements Runnable
 			if(Key == KeyEvent.VK_ESCAPE)
 			{
 				currentState = State.Menu;
-			}
-		}
-		
-		if(Key == KeyEvent.VK_F11)
-		{
-			if(isFullScreen == false)
-			{
-				isFullScreen = true;
-			}
-			
-			else
-			{
-				isFullScreen = false;
+				creditSpeed = 0;
+				
+				SoundManager.stopMusic();
 			}
 		}
 	}
@@ -555,6 +549,7 @@ public class Main extends Canvas implements Runnable
 					if(Par3.y > 435 && Par3.y < 485) 
 					{
 						currentState = State.Options;
+						
 					}
 				}
 				
@@ -563,6 +558,8 @@ public class Main extends Canvas implements Runnable
 					if(Par3.y > 510 && Par3.y < 560) 
 					{
 						currentState = State.Credits;
+						
+						SoundManager.playMusic("2nd Flight.wav");
 					}
 				}
 				
@@ -570,7 +567,7 @@ public class Main extends Canvas implements Runnable
 				{
 					if(Par3.y > 585 && Par3.y < 635) 
 					{
-						stop();
+						System.exit(0);
 					}
 				}
 			}
