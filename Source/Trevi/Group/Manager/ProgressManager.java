@@ -51,7 +51,7 @@ public class ProgressManager
 				DocumentBuilder Par2 = Par1.newDocumentBuilder();
 		 
 				Document Par3 = Par2.newDocument();
-				Element Par4 = Par3.createElement(Reference.Title);
+				Element Par4 = Par3.createElement("Player");
 				
 				Par3.appendChild(Par4);
 		 

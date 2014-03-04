@@ -20,6 +20,6 @@ public class Reference
 	
 	// Information
 	
-	public static final String Title = "Dalthow";
+	public static final String Title = "Group 12";
 	public static final String Version = "0.1";
 }
