@@ -28,6 +28,8 @@ public class Block extends GlobalPosition
 	private int xPos;
 	private int yPos;
 	
+	public boolean isSolid = true;
+	
 	public Block(int Row, int Col, int xPos, int yPos, Main Main, String Name) 
 	{
 		super(xPos, yPos);
@@ -47,28 +49,31 @@ public class Block extends GlobalPosition
 	
 	public void tick() throws Exception
 	{
-		if(Main.Character.getBoundsBottom(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
+		if(isSolid == true)
 		{
-			Main.Character.setVelY(0);
-			Main.Character.canMoveDown = false;
-		}
-		
-		else if(Main.Character.getBoundsTop(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
-		{
-			Main.Character.setVelY(0);
-			Main.Character.canMoveUp = false;
-		}
-		
-		else if(Main.Character.getBoundsRight(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
-		{
-			Main.Character.setVelX(0);
-			Main.Character.canMoveRight = false;
-		}
-		
-		else if(Main.Character.getBoundsLeft(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
-		{
-			Main.Character.setVelX(0);
-			Main.Character.canMoveLeft = false;
+			if(Main.Character.getBoundsBottom(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
+			{
+				Main.Character.setVelY(0);
+				Main.Character.canMoveDown = false;
+			}
+			
+			else if(Main.Character.getBoundsTop(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
+			{
+				Main.Character.setVelY(0);
+				Main.Character.canMoveUp = false;
+			}
+			
+			else if(Main.Character.getBoundsRight(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
+			{
+				Main.Character.setVelX(0);
+				Main.Character.canMoveRight = false;
+			}
+			
+			else if(Main.Character.getBoundsLeft(Main.Frame.getWidth(), Main.Frame.getHeight()).intersects(getBounds()))
+			{
+				Main.Character.setVelX(0);
+				Main.Character.canMoveLeft = false;
+			}
 		}
 	}
 

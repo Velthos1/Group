@@ -36,11 +36,12 @@ public class ProgressManager
 	
 	public static double Health;
 	public static double Energy;
+	public static double Currency;
 	
 	
 	// The method called when the game is closed and when progress needs to be saved.
 	
-	public static void saveProgress(double xPos, double yPos, double Health, double Energy)
+	public static void saveProgress(double xPos, double yPos, double Health, double Energy, double Currency)
 	{
 		 try 
 		 {
@@ -85,16 +86,24 @@ public class ProgressManager
 
 				Par8.appendChild(Par3.createTextNode(Double.toString(Energy)));
 				Par4.appendChild(Par8);
+				
+				
+				// Saving the players currency
+				
+				Element Par9 = Par3.createElement("Currency");
+
+				Par9.appendChild(Par3.createTextNode(Double.toString(Currency)));
+				Par4.appendChild(Par9);
 		 
 				
 				// Saving the file
 				
-				TransformerFactory Par9 = TransformerFactory.newInstance();
-				Transformer Par10 = Par9.newTransformer();
-				DOMSource Par11 = new DOMSource(Par3);
-				StreamResult Par12 = new StreamResult(new File("Progress.xml"));
+				TransformerFactory Par10 = TransformerFactory.newInstance();
+				Transformer Par12 = Par10.newTransformer();
+				DOMSource Par13 = new DOMSource(Par3);
+				StreamResult Par14 = new StreamResult(new File("Progress.xml"));
 		 
-				Par10.transform(Par11, Par12);
+				Par12.transform(Par13, Par14);
 		} 
 		 
 		catch (ParserConfigurationException Stacktrace) 
@@ -142,6 +151,7 @@ public class ProgressManager
 					yPos = Double.parseDouble((String) eElement.getElementsByTagName("yPos").item(0).getTextContent());
 					Health = Double.parseDouble((String) eElement.getElementsByTagName("Health").item(0).getTextContent());
 					Energy = Double.parseDouble((String) eElement.getElementsByTagName("Energy").item(0).getTextContent());
+					Currency = Double.parseDouble((String) eElement.getElementsByTagName("Currency").item(0).getTextContent());
 				}
 			}
 		}

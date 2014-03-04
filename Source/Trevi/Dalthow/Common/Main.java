@@ -40,13 +40,15 @@ import Trevi.Dalthow.Manager.ObjectManager;
 import Trevi.Dalthow.Manager.ProgressManager;
 import Trevi.Dalthow.Object.Block;
 import Trevi.Dalthow.Object.Player;
+import Trevi.Dalthow.Util.MathHelper;
 
 public class Main extends Canvas implements Runnable
 {
 	// Declaration
 	
 	private boolean isRunning = false;
-	private boolean isFullScreen = false;	
+	private boolean isFullScreen = false;
+	private boolean canAttack = true;
 	
 	public static boolean Info = false;
 	
@@ -59,7 +61,7 @@ public class Main extends Canvas implements Runnable
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	
-	private BufferedImage Item, Block, Player, Shadow, Heart, Logo, Button, Map;
+	private BufferedImage Item, Block, Player, Shadow, Heart, Currency, Energy, Logo, Button, Map;
 	private State currentState;
 	private Thread Loop;
 	private Font Console, Fancy;
@@ -109,7 +111,8 @@ public class Main extends Canvas implements Runnable
 		Object = new ObjectManager();
 		
 		Object.addBlock(new Block(1, 1, 200, 400, this, "closedChest"));
-	
+		Object.addBlock(new Block(1, 1, 300, 400, this, "closedChest"));
+		
 		for(int Par1 = 0; Par1 < 1024; Par1 += 64)
 		{
 			Object.addBlock(new Block(3, 1, 0 + Par1, 0, this, "Wall"));
@@ -296,6 +299,7 @@ public class Main extends Canvas implements Runnable
 			Graphics.drawImage(Button, Reference.Width - 100, Reference.Height + 225, 200, 50, this);
 			
 			Graphics.setFont(Fancy);
+			
 			Graphics.setColor(Color.black);
 			
 			Graphics.drawString("Return.", 415, 398);
@@ -341,11 +345,19 @@ public class Main extends Canvas implements Runnable
 			SpriteGrabber Sprite = new SpriteGrabber(Item);
 			
 			Heart = Sprite.grabItemImage(1, 1, 32, 32);
+			Currency = Sprite.grabItemImage(2, 1, 32, 32);
+			Energy = Sprite.grabItemImage(3, 1, 32, 32);
 			
-			for(int Par1 = 0; Par1 < Character.getHealth(); Par1++)
-			{
-				Graphics.drawImage(Heart, (Frame.getWidth() - 350 + (Par1 * 33)), 10, 32, 32 , null);
-			}
+			Graphics.drawImage(Heart, (Frame.getWidth() - (350 - 231)), 10, 32, 32 , null);
+			Graphics.drawImage(Currency, (Frame.getWidth() - (350 - 231)), 47, 32, 32 , null);
+			Graphics.drawImage(Energy, (Frame.getWidth() - (350 - 231)), 84, 32, 32 , null);
+			
+			Graphics.setFont(Fancy);
+			Graphics.setColor(Color.darkGray);
+			
+			Graphics.drawString("" + MathHelper.round(Character.getHealth()), (Frame.getWidth() - (350 - 270)), 39);
+			Graphics.drawString("" + MathHelper.round(Character.getCurrency()), (Frame.getWidth() - (350 - 270)), 76);
+			Graphics.drawString("" + MathHelper.round(Character.getEnergy()), (Frame.getWidth() - (350 - 270)), 113);
 		}
 		
 		Graphics.dispose();
@@ -396,6 +408,20 @@ public class Main extends Canvas implements Runnable
 				{
 					Character.setVelX(movementSpeed);
 					Character.canMoveRight = true;
+				}
+			}
+			
+			else if(Key == KeyEvent.VK_SPACE)
+			{
+				if(Character.getEnergy() > 0)
+				{
+					if(canAttack == true)
+					{
+						Character.setEnergy(Character.getEnergy() - 5.0);
+						Character.attack();
+						
+						canAttack = false;
+					}
 				}
 			}
 
@@ -489,6 +515,11 @@ public class Main extends Canvas implements Runnable
 			{
 				Character.setVelX(0);
 				Character.canMoveLeft = true;
+			}
+			
+			else if(Key == KeyEvent.VK_SPACE)
+			{
+				canAttack = true;
 			}
 			
 			else if(Key == KeyEvent.VK_F3)
@@ -594,7 +625,7 @@ public class Main extends Canvas implements Runnable
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent Par1) 
 		    {
-		    	ProgressManager.saveProgress(Character.getX(), Character.getY(), Character.getHealth(), Character.getEnergy());
+		    	ProgressManager.saveProgress(Character.getX(), Character.getY(), Character.getHealth(), Character.getEnergy(), Character.getCurrency());
 		    }
 		});
 		

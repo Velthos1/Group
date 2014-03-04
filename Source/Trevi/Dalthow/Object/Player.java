@@ -30,6 +30,7 @@ public class Player
 	
 	private double Health;
 	private double Energy;
+	private double Currency;
 	
 	private double xVel;
 	private double yVel;
@@ -50,6 +51,7 @@ public class Player
 		
 		this.Health = ProgressManager.Health;
 		this.Energy = ProgressManager.Energy;
+		this.Currency = ProgressManager.Currency;
 		
 		SpriteGrabber Sprite = new SpriteGrabber(Main.getPlayerSpriteSheet());
 		
@@ -86,17 +88,40 @@ public class Player
 	
 	public Rectangle getBoundsTop(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 32, 32 / 2 * Reference.Scale, 32 * Reference.Scale / 2);
+		return new Rectangle(Par1 / 2 - 32 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - 24, 32 / 2 * Reference.Scale, 32 * Reference.Scale / 2);
 	}
 	
 	public Rectangle getBoundsRight(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 32 + 32 * Reference.Scale - 5 * Reference.Scale, Par2 / 2 - 32 + 5 * Reference.Scale, 5 * Reference.Scale, 48 * Reference.Scale - 10 * Reference.Scale);
+		return new Rectangle(Par1 / 2 - 32 + 31 * Reference.Scale - 5 * Reference.Scale, Par2 / 2 - 24 + 5 * Reference.Scale, 5 * Reference.Scale, 42 * Reference.Scale - 10 * Reference.Scale);
 	}
 	
 	public Rectangle getBoundsLeft(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 32, Par2 / 2 - 32 + 5 * Reference.Scale, 5 * Reference.Scale, 48 * Reference.Scale - 10 * Reference.Scale);
+		return new Rectangle(Par1 / 2 - 31, Par2 / 2 - 24 + 5 * Reference.Scale, 5 * Reference.Scale, 42 * Reference.Scale - 10 * Reference.Scale);
+	}
+	
+	
+	// The rectangle used to see if there are enemies in range of the player
+	
+	public Rectangle getAttackBoundsBottom(int Par1, int Par2)
+	{
+		return new Rectangle(Par1 / 2 - 40 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 + (64 / 2 * Reference.Scale), 48 / 2 * Reference.Scale, 30 * Reference.Scale);
+	}
+	
+	public Rectangle getAttackBoundsTop(int Par1, int Par2)
+	{
+		return new Rectangle(Par1 / 2 - 40 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - (62 * Reference.Scale), 48 / 2 * Reference.Scale, 30 * Reference.Scale);
+	}
+	
+	public Rectangle getAttackBoundsLeft(int Par1, int Par2)
+	{
+		return new Rectangle(Par1 / 2 - 46 * Reference.Scale, Par2 / 2 - 64 + 5 * Reference.Scale, 30 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
+	}
+	
+	public Rectangle getAttackBoundsRight(int Par1, int Par2)
+	{
+		return new Rectangle(Par1 / 2 + 21 * Reference.Scale - 5 * Reference.Scale, Par2 / 2 - 64 + 5 * Reference.Scale, 30 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
 	}
 	
 	
@@ -129,6 +154,12 @@ public class Player
 			
 			Par3.setColor(Color.yellow);
 			Par3.draw(getBoundsRight(Par1, Par2));
+			
+			Par3.setColor(Color.magenta);
+			Par3.draw(getAttackBoundsTop(Par1, Par2));
+			Par3.draw(getAttackBoundsBottom(Par1, Par2));
+			Par3.draw(getAttackBoundsLeft(Par1, Par2));
+			Par3.draw(getAttackBoundsRight(Par1, Par2));
 			
 			Par3.setColor(Color.darkGray);
 			Par3.draw(getBounds(Par1, Par2));
@@ -173,6 +204,13 @@ public class Player
 	}
 	
 	
+	// Makes the player attack
+	public void attack() 
+	{
+	
+	}
+	
+	
 	// Getters
 	
 	public double getX()
@@ -203,6 +241,11 @@ public class Player
 	public double getEnergy()
 	{
 		return Energy;
+	}
+	
+	public double getCurrency()
+	{
+		return Currency;
 	}
 	
 	
@@ -246,5 +289,10 @@ public class Player
 	public void setEnergy(double Energy)
 	{
 		this.Energy = Energy;
+	}
+	
+	public void setCurrency(double Currency)
+	{
+		this.Currency = Currency;
 	}
 }

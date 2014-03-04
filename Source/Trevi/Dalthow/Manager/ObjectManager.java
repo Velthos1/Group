@@ -65,21 +65,33 @@ public class ObjectManager
 			if(tempItem.getBounds().intersects(Main.Character.getBounds(Main.Frame.getWidth(), Main.Frame.getHeight())))
 			{
 				if(tempItem.getName() == "Heart")
-				{
-					removeItem(Par1);
-					SoundManager.playSound("Pickup.wav");
+				{				
+					if(Main.Character.getHealth() <= 9)
+					{
+						Main.Character.setHealth(Main.Character.getHealth() + 1.0);
+						SoundManager.playSound("Pickup.wav");
+						removeItem(Par1);
+					}		
 				}
 
 				else if(tempItem.getName() == "Coin")
 				{
-					removeItem(Par1);
-					SoundManager.playSound("Pickup.wav");
+					if(Main.Character.getCurrency() <= 999)
+					{
+						Main.Character.setCurrency(Main.Character.getCurrency() + 1.0);
+						SoundManager.playSound("Pickup.wav");
+						removeItem(Par1);
+					}
 				}
 
 				else if(tempItem.getName() == "Potion")
 				{
-					removeItem(Par1);
-					SoundManager.playSound("Pickup.wav");
+					if(Main.Character.getEnergy() <= 80)
+					{
+						Main.Character.setEnergy(Main.Character.getEnergy() + 20.0);
+						SoundManager.playSound("Pickup.wav");
+						removeItem(Par1);
+					}
 				}
 			}
 			
@@ -114,7 +126,23 @@ public class ObjectManager
 						addItem(new Item(3, 1, tempBlock.getX() + 10 + RandomGenerator.randomNumber(-32, 32), tempBlock.getY() + 10 + RandomGenerator.randomNumber(-32, 32), Main.Instance, "Potion"));
 					}
 					
+					for(int Par2 = RandomGenerator.randomNumber(0, 1); Par2 > 0; Par2--)
+					{
+						addItem(new Item(1, 1, tempBlock.getX() + 10 + RandomGenerator.randomNumber(-32, 32), tempBlock.getY() + 10 + RandomGenerator.randomNumber(-32, 32), Main.Instance, "Heart"));
+					}
+					
 					removeBlock(Par1);
+				}
+				
+				if(tempBlock.getName() == "closedDoor")
+				{
+					addBlock(new Block(5, 1, tempBlock.getX(), tempBlock.getY(), Main.Instance, "openDoor"));
+					removeBlock(Par1);
+				}
+				
+				if(tempBlock.getName() == "openDoor")
+				{
+					tempBlock.isSolid = false;
 				}
 			}
 			
