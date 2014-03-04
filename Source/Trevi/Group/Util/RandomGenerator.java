@@ -7,7 +7,7 @@
  * 
  **/
 
-package Trevi.Dalthow.Util;
+package Trevi.Group.Util;
 
 import java.util.Random;
 

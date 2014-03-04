@@ -7,7 +7,7 @@
  * 
  **/
 
-package Trevi.Dalthow.Manager;
+package Trevi.Group.Manager;
 
 import java.io.File;
 
@@ -25,7 +25,7 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-import Trevi.Dalthow.Common.Reference;
+import Trevi.Group.Common.Reference;
  
 public class ProgressManager
 {

@@ -7,12 +7,12 @@
  * 
  **/
 
-package Trevi.Dalthow.Handler;
+package Trevi.Group.Handler;
 
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
-import Trevi.Dalthow.Common.Main;
+import Trevi.Group.Common.Main;
 
 public class KeyInput extends KeyAdapter
 {

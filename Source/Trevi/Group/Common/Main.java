@@ -7,7 +7,7 @@
  * 
  **/
 
-package Trevi.Dalthow.Common;
+package Trevi.Group.Common;
 
 import java.awt.Canvas;
 import java.awt.Color;
@@ -32,15 +32,15 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
-import Trevi.Dalthow.Handler.BufferLoader;
-import Trevi.Dalthow.Handler.KeyInput;
-import Trevi.Dalthow.Handler.MouseInput;
-import Trevi.Dalthow.Handler.SpriteGrabber;
-import Trevi.Dalthow.Manager.ObjectManager;
-import Trevi.Dalthow.Manager.ProgressManager;
-import Trevi.Dalthow.Object.Block;
-import Trevi.Dalthow.Object.Player;
-import Trevi.Dalthow.Util.MathHelper;
+import Trevi.Group.Handler.BufferLoader;
+import Trevi.Group.Handler.KeyInput;
+import Trevi.Group.Handler.MouseInput;
+import Trevi.Group.Handler.SpriteGrabber;
+import Trevi.Group.Manager.ObjectManager;
+import Trevi.Group.Manager.ProgressManager;
+import Trevi.Group.Object.Block;
+import Trevi.Group.Object.Player;
+import Trevi.Group.Util.MathHelper;
 
 public class Main extends Canvas implements Runnable
 {

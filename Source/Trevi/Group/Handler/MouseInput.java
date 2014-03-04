@@ -7,12 +7,12 @@
  * 
  **/
 
-package Trevi.Dalthow.Handler;
+package Trevi.Group.Handler;
 
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import Trevi.Dalthow.Common.Main;
+import Trevi.Group.Common.Main;
 
 public class MouseInput extends MouseAdapter
 {

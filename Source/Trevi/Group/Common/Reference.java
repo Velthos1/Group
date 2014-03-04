@@ -7,7 +7,7 @@
  * 
  **/
 
-package Trevi.Dalthow.Common;
+package Trevi.Group.Common;
 
 public class Reference 
 {

@@ -7,7 +7,7 @@
  * 
  **/
 
-package Trevi.Dalthow.Handler;
+package Trevi.Group.Handler;
 
 public class GlobalPosition 
 {	

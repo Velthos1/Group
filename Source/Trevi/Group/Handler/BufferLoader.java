@@ -7,7 +7,7 @@
  * 
  **/
 
-package Trevi.Dalthow.Handler;
+package Trevi.Group.Handler;
 
 import java.awt.image.BufferedImage;
 import java.io.IOException;

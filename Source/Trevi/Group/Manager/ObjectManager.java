@@ -7,15 +7,15 @@
  * 
  **/
 
-package Trevi.Dalthow.Manager;
+package Trevi.Group.Manager;
 
 import java.awt.Graphics;
 import java.util.LinkedList;
 
-import Trevi.Dalthow.Common.Main;
-import Trevi.Dalthow.Object.Block;
-import Trevi.Dalthow.Object.Item;
-import Trevi.Dalthow.Util.RandomGenerator;
+import Trevi.Group.Common.Main;
+import Trevi.Group.Object.Block;
+import Trevi.Group.Object.Item;
+import Trevi.Group.Util.RandomGenerator;
 
 public class ObjectManager
 {

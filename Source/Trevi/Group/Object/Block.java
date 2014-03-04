@@ -7,16 +7,16 @@
  * 
  **/
 
-package Trevi.Dalthow.Object;
+package Trevi.Group.Object;
 
 import java.awt.Graphics;
 import java.awt.Rectangle;
 import java.awt.image.BufferedImage;
 
-import Trevi.Dalthow.Common.Main;
-import Trevi.Dalthow.Common.Reference;
-import Trevi.Dalthow.Handler.GlobalPosition;
-import Trevi.Dalthow.Handler.SpriteGrabber;
+import Trevi.Group.Common.Main;
+import Trevi.Group.Common.Reference;
+import Trevi.Group.Handler.GlobalPosition;
+import Trevi.Group.Handler.SpriteGrabber;
 
 public class Block extends GlobalPosition
 {

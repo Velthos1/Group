@@ -7,7 +7,7 @@
  * 
  **/
 
-package Trevi.Dalthow.Manager;
+package Trevi.Group.Manager;
 
 import java.io.File;
 
