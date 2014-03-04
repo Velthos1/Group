@@ -49,6 +49,7 @@ public class Main extends Canvas implements Runnable
 	
 	private boolean isRunning = false;
 	private boolean canAttack = true;
+	private boolean canSwitchState = true;
 	
 	public static boolean Info = false;
 	
@@ -86,7 +87,6 @@ public class Main extends Canvas implements Runnable
 	{
 		Instance = this;
 		currentState = State.Splash;
-		creditSpeed = 0;
 		
 		BufferLoader Loader = new BufferLoader();
 		
@@ -243,7 +243,12 @@ public class Main extends Canvas implements Runnable
 		{
 			Thread.sleep(1750);
 			
-			currentState = State.Game;
+			currentState = State.Title;
+		}
+		
+		if(currentState == State.Title)
+		{
+			currentState = State.Menu;
 		}
 		
 		else if(currentState == State.Game)
@@ -256,7 +261,7 @@ public class Main extends Canvas implements Runnable
 		
 		else if(currentState == State.Credits)
 		{
-			creditSpeed += 0.4;
+			MathHelper.round(creditSpeed += 0.4);
 		}
 	}
 	
@@ -319,7 +324,7 @@ public class Main extends Canvas implements Runnable
 			Graphics.drawString("Group 12", Frame.getWidth() / 2 - 95, (int) (800 - creditSpeed));
 			
 			Graphics.setFont(Fancy.deriveFont(Font.PLAIN, 28));
-			Graphics.drawString("Created by Dalthow Game Studios", Frame.getWidth() / 2 - 270, (int) (875 - creditSpeed));
+			Graphics.drawString("A game by Dalthow Game Studios", Frame.getWidth() / 2 - 270, (int) (875 - creditSpeed));
 		}
 		
 		else if(currentState == State.Game)
@@ -454,7 +459,11 @@ public class Main extends Canvas implements Runnable
 		{
 			if(Key == KeyEvent.VK_ESCAPE)
 			{
-				currentState = State.Game;
+				if(canSwitchState == true)
+				{
+					currentState = State.Game;
+					canSwitchState = false;
+				}
 			}
 		}
 		
@@ -519,6 +528,11 @@ public class Main extends Canvas implements Runnable
 			else if(Key == KeyEvent.VK_F3)
 			{
 				Info = false;
+			}
+			
+			else if(Key == KeyEvent.VK_ESCAPE)
+			{
+				canSwitchState = true;
 			}
 		}
 	}
