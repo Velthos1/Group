@@ -106,22 +106,22 @@ public class Player
 	
 	public Rectangle getAttackBoundsBottom(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 40 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 + (64 / 2 * Reference.Scale), 48 / 2 * Reference.Scale, 30 * Reference.Scale);
+		return new Rectangle(Par1 / 2 - 40 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 + (64 / 2 * Reference.Scale), 48 / 2 * Reference.Scale, 20 * Reference.Scale);
 	}
 	
 	public Rectangle getAttackBoundsTop(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 40 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - (62 * Reference.Scale), 48 / 2 * Reference.Scale, 30 * Reference.Scale);
+		return new Rectangle(Par1 / 2 - 40 + (32 / 2 * Reference.Scale) - ((32 * Reference.Scale / 2) / 2), Par2 / 2 - (52 * Reference.Scale), 48 / 2 * Reference.Scale, 20 * Reference.Scale);
 	}
 	
 	public Rectangle getAttackBoundsLeft(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 - 46 * Reference.Scale, Par2 / 2 - 64 + 5 * Reference.Scale, 30 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
+		return new Rectangle(Par1 / 2 - 36 * Reference.Scale, Par2 / 2 - 64 + 5 * Reference.Scale, 20 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
 	}
 	
 	public Rectangle getAttackBoundsRight(int Par1, int Par2)
 	{
-		return new Rectangle(Par1 / 2 + 21 * Reference.Scale - 5 * Reference.Scale, Par2 / 2 - 64 + 5 * Reference.Scale, 30 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
+		return new Rectangle(Par1 / 2 + 21 * Reference.Scale - 5 * Reference.Scale, Par2 / 2 - 64 + 5 * Reference.Scale, 20 * Reference.Scale, 64 * Reference.Scale - 10 * Reference.Scale);
 	}
 	
 	
