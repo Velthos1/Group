@@ -134,7 +134,7 @@ public class ProgressManager
 		 
 			Par4.getDocumentElement().normalize();
 		 
-			NodeList Par5 = Par4.getElementsByTagName(Reference.Title);
+			NodeList Par5 = Par4.getElementsByTagName("Player");
 		 
 			
 			// Looping through the file looking for the selected variables 
