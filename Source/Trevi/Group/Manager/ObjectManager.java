@@ -134,13 +134,7 @@ public class ObjectManager
 					removeBlock(Par1);
 				}
 				
-				if(tempBlock.getName() == "closedDoor")
-				{
-					addBlock(new Block(5, 1, tempBlock.getX(), tempBlock.getY(), Main.Instance, "openDoor"));
-					removeBlock(Par1);
-				}
-				
-				if(tempBlock.getName() == "openDoor")
+				if(tempBlock.getName() == "woodenFloor")
 				{
 					tempBlock.isSolid = false;
 				}

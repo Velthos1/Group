@@ -64,7 +64,7 @@ public class Main extends Canvas implements Runnable
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	
-	private BufferedImage Item, Block, Player, Shadow, Heart, Currency, Energy, Logo, Button, Map;
+	private BufferedImage Item, Block, Player, Shadow, Heart, Currency, Energy, Logo, Button;
 	private State currentState;
 	private Thread Loop;
 	private Font Console, Fancy;
@@ -96,7 +96,6 @@ public class Main extends Canvas implements Runnable
 			Block = Loader.loadImage("/Graphics/Game/Object/Block.png");
 			Player = Loader.loadImage("/Graphics/Game/Object/Player.png");
 			Shadow = Loader.loadImage("/Graphics/Game/Terrain/Shadow.png");
-			Map = Loader.loadImage("/Graphics/Game/Terrain/Map.png");
 			Button = Loader.loadImage("/Graphics/Menu/Button.png");
 			Logo = Loader.loadImage("/Graphics/Splash/Logo.png");
 			
@@ -113,9 +112,6 @@ public class Main extends Canvas implements Runnable
 		
 		Object = new ObjectManager();
 		
-		Object.addBlock(new Block(1, 1, 200, 400, this, "closedChest"));
-		Object.addBlock(new Block(1, 1, 300, 400, this, "closedChest"));
-		
 		for(int Par1 = 0; Par1 < 1024; Par1 += 64)
 		{
 			Object.addBlock(new Block(3, 1, 0 + Par1, 0, this, "Wall"));
@@ -123,6 +119,27 @@ public class Main extends Canvas implements Runnable
 			Object.addBlock(new Block(3, 1, 0, 0  + Par1, this, "Wall"));
 			Object.addBlock(new Block(3, 1, 960, 0  + Par1, this, "Wall"));
 		}
+		
+		for(int Par1 = 0; Par1 < 896; Par1 += 64)
+		{
+			Object.addBlock(new Block(4, 1, 64 + Par1, 64, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 128, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 192, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 256, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 320, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 384, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 448, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 512, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 576, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 640, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 704, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 768, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 832, this, "woodenFloor"));
+			Object.addBlock(new Block(4, 1, 64 + Par1, 896, this, "woodenFloor"));
+		}
+		
+		Object.addBlock(new Block(1, 1, 200, 400, this, "closedChest"));
+		Object.addBlock(new Block(1, 1, 300, 400, this, "closedChest"));
 		
 		addKeyListener(new KeyInput(this));
 		addMouseListener(new MouseInput(this));
@@ -330,11 +347,11 @@ public class Main extends Canvas implements Runnable
 		else if(currentState == State.Game)
 		{
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
-			Graphics.drawImage(Map, (int)Character.getX(), (int)Character.getY(), 1024, 1024, this);	
-
-			Graphics.drawImage(Shadow, Frame.getWidth() / 2 - 47, Frame.getHeight() / 2 + 12, 48 * Reference.Scale, 48 * Reference.Scale, this);	
 			
 			Object.renderBlock(Graphics);
+			
+			Graphics.drawImage(Shadow, Frame.getWidth() / 2 - 47, Frame.getHeight() / 2 + 12, 48 * Reference.Scale, 48 * Reference.Scale, this);	
+			
 			Object.renderItem(Graphics);
 			
 			Character.render(Graphics, Frame.getWidth(), Frame.getHeight());
