@@ -581,6 +581,7 @@ public class Main extends Canvas implements Runnable
 				{
 					if(Par3.y > 585 && Par3.y < 635) 
 					{
+						saveLevel();
 						System.exit(0);
 					}
 				}
@@ -636,11 +637,19 @@ public class Main extends Canvas implements Runnable
 		    @Override
 		    public void windowClosing(java.awt.event.WindowEvent Par1) 
 		    {
-		    	ProgressManager.saveProgress(Character.getX(), Character.getY(), Character.getHealth(), Character.getEnergy(), Character.getCurrency());
+		    	saveLevel();
 		    }
 		});
 		
 		Game.start();
+	}
+	
+	
+	// Saves the progress the player made
+	
+	public static void saveLevel()
+	{
+		ProgressManager.saveProgress(Character.getX(), Character.getY(), Character.getHealth(), Character.getEnergy(), Character.getCurrency());
 	}
 	
 	
