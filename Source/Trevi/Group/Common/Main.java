@@ -70,7 +70,7 @@ public class Main extends Canvas implements Runnable
 	
 	private BufferedImage Image = new BufferedImage(Reference.Width, Reference.Height, BufferedImage.TYPE_INT_RGB);
 	
-	private BufferedImage Item, Block, Player, Shadow, Heart, Currency, Energy, Logo, Button;
+	private BufferedImage Item, Block, Player, Shadow, Heart, Currency, Energy, Logo, Button, Bars;
 	private State currentState;
 	private Thread Loop;
 	private Font Console, Fancy;
@@ -101,6 +101,7 @@ public class Main extends Canvas implements Runnable
 			Item = Loader.loadImage("/Graphics/Game/Object/Item.png");
 			Block = Loader.loadImage("/Graphics/Game/Object/Block.png");
 			Player = Loader.loadImage("/Graphics/Game/Object/Player.png");
+			Bars = Loader.loadImage("/Graphics/Game/UI/Bars.png");
 			Shadow = Loader.loadImage("/Graphics/Game/Terrain/Shadow.png");
 			Button = Loader.loadImage("/Graphics/Menu/Button.png");
 			Logo = Loader.loadImage("/Graphics/Splash/Logo.png");
@@ -401,6 +402,32 @@ public class Main extends Canvas implements Runnable
 
 			SpriteGrabber Sprite = new SpriteGrabber(Item);
 			
+			Graphics.drawImage(Bars, 0, 0, 200, 64, null);
+			Graphics.setColor(new Color(208, 70, 72));
+			double healthScale = (Character.getHealth() / 10);
+			
+			double checkBars = 0;
+			
+			if(Character.getHealth() >= 1)
+				{
+				if(Character.getHealth() <= 4)
+				{
+					checkBars = 2;
+				}
+				else if(Character.getHealth() <= 9)
+				{
+					checkBars = 1;
+				}
+			}
+			else
+			{
+				checkBars = 0;
+			}
+			
+			Graphics.fillRect(72, 8, (int) (102 * healthScale), 8);
+			Graphics.setColor(new Color(210, 170, 153));
+			Graphics.fillRect(74, 8, (int) ((100 * healthScale) - checkBars), 4);
+			
 			Heart = Sprite.grabItemImage(1, 1, 32, 32);
 			Currency = Sprite.grabItemImage(2, 1, 32, 32);
 			Energy = Sprite.grabItemImage(3, 1, 32, 32);
@@ -582,6 +609,11 @@ public class Main extends Canvas implements Runnable
 			{
 				canSwitchState = true;
 			}
+			
+			else if(Key == KeyEvent.VK_K)
+			{
+				Character.setHealth(Character.getHealth() - 1);
+			}
 		}
 	}
 	
@@ -718,5 +750,10 @@ public class Main extends Canvas implements Runnable
 	public BufferedImage getBlockSpriteSheet() 
 	{
 		return Block;
+	}
+	
+	public BufferedImage getBarsSprite() 
+	{
+		return Bars;
 	}
 }
