@@ -58,6 +58,12 @@ public class Main extends Canvas implements Runnable
 	
 	private double creditSpeed;
 	
+	private long oldCreditsTime;
+	private long newCreditsTime;
+	
+	//In seconds, as shown in the credits screen (enable credits timer in render method first)
+	private long creditsTimer = 42;
+	
 	private Calendar Time = Calendar.getInstance();
 	
 	public static JFrame Frame = new JFrame(Reference.Title);
@@ -81,7 +87,7 @@ public class Main extends Canvas implements Runnable
 	}
 	
 	
-	// Initializes
+	// Initialization
 	
 	public void init() throws Exception
 	{
@@ -278,7 +284,14 @@ public class Main extends Canvas implements Runnable
 		
 		else if(currentState == State.Credits)
 		{
-			MathHelper.round(creditSpeed += 0.4);
+			MathHelper.round(creditSpeed += .4);
+			
+			newCreditsTime = System.currentTimeMillis();
+			
+			if(newCreditsTime - oldCreditsTime >= creditsTimer * 1000)
+			{
+				currentState = State.Menu;
+			}
 		}
 	}
 	
@@ -322,10 +335,10 @@ public class Main extends Canvas implements Runnable
 			
 			Graphics.setColor(Color.black);
 			
-			Graphics.drawString("Return.", 415, 398);
-			Graphics.drawString("Options.", 408, 471);
+			Graphics.drawString("Start Game", 385, 398);
+			Graphics.drawString("Options", 408, 471);
 			Graphics.drawString("Credits", 417, 548);
-			Graphics.drawString("Exit.", 443, 623);
+			Graphics.drawString("Exit", 443, 623);
 		}
 		
 		else if(currentState == State.Options)
@@ -334,14 +347,32 @@ public class Main extends Canvas implements Runnable
 		}
 		
 		else if(currentState == State.Credits)
-		{
+		{	
 			Graphics.drawImage(Image, 0, 0, Frame.getWidth(), Frame.getHeight(), this);
 
+			//Introduction
 			Graphics.setFont(Fancy.deriveFont(Font.PLAIN, 48));
 			Graphics.drawString("Group 12", Frame.getWidth() / 2 - 95, (int) (800 - creditSpeed));
 			
 			Graphics.setFont(Fancy.deriveFont(Font.PLAIN, 28));
 			Graphics.drawString("A game by Dalthow Game Studios", Frame.getWidth() / 2 - 270, (int) (875 - creditSpeed));
+			
+			//Names
+			
+			//Trevi
+			Graphics.setFont(Fancy.deriveFont(Font.PLAIN, 20));
+			Graphics.drawString("Lead Developer", Frame.getWidth() / 4, (int) (950 - creditSpeed));
+			Graphics.drawString("Trevi", Frame.getWidth() / 8*5, (int) (950 - creditSpeed));
+			
+			//Jordan
+			Graphics.drawString("Developer", Frame.getWidth() / 4, (int) (980 - creditSpeed));
+			Graphics.drawString("Jordan", Frame.getWidth() / 8*5, (int) (980 - creditSpeed));
+			
+			/* 
+			 * Credits Timer
+			 * Un-comment this to enable the Credits Timer
+			 */
+			//Graphics.drawString(Long.toString((newCreditsTime - oldCreditsTime) / 1000), Frame.getWidth() / 4, 50);
 		}
 		
 		else if(currentState == State.Game)
@@ -458,7 +489,7 @@ public class Main extends Canvas implements Runnable
 				BufferedImage screenShot = Par2.createScreenCapture(Frame.getBounds());
 				ImageIO.write(screenShot, "PNG", new File(Time.get(Calendar.YEAR) + "-" + (Time.get(Calendar.MONTH) + 1) + "-" + Time.get(Calendar.DAY_OF_MONTH) + "-" + Time.get(Calendar.HOUR_OF_DAY) + "-" + Time.get(Calendar.MINUTE) + "-" + Time.get(Calendar.SECOND) + ".png"));
 				
-				JOptionPane.showMessageDialog(Frame, "You just made a screenshot.");
+				JOptionPane.showMessageDialog(Frame, "You just took a screenshot.");
 			}
 				
 			else if(Key == KeyEvent.VK_F3)
@@ -589,8 +620,9 @@ public class Main extends Canvas implements Runnable
 					if(Par3.y > 510 && Par3.y < 560) 
 					{
 						currentState = State.Credits;
-						
 						SoundManager.playMusic("2nd Flight.wav");
+						
+						oldCreditsTime = System.currentTimeMillis();
 					}
 				}
 				
